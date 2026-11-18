@@ -121,9 +121,9 @@ The control plane includes a matching kubectl 1.36.1. Use `vagrant ssh cp0 -c 'k
 
 The APK cache targets Alpine **3.24 / x86_64**, using the latest packages available in that stable branch when refreshed. `apk-packages.json` lists the requested packages and repositories; `apk-packages.lock.json` records every cached filename and SHA-256. Each directory includes its complete recursive dependency set, so provisioning needs no Alpine mirror access. Shared dependencies appear in multiple groups to keep each existing wildcard installation self-contained.
 
-Current OS package versions include Python 3.14.10-r1, UFW 0.36.2-r4, iptables 1.8.13-r0, HAProxy 3.4.7-r0, Unbound 1.25.2-r2, rsyslog 8.2604.0-r0 and nfs-utils 2.6.4-r6. Python's Kubernetes client is 34.1.0-r1. The iptables package uses the **nf_tables** backend rather than the previous cache's legacy backend.
+Current OS package versions include Python 3.14.10-r1, UFW 0.36.2-r4, iptables 1.8.13-r0, HAProxy 3.4.7-r0, Unbound 1.25.2-r2, rsyslog 8.2608.0-r0 and nfs-utils 2.6.4-r6. Python's Kubernetes client is 34.1.0-r1. The iptables package uses the **nf_tables** backend rather than the previous cache's legacy backend.
 
-Cluster packages are pinned to the tested Alpine builds: Kubernetes 1.36.1-r2, cri-tools 1.36.0-r3, containerd/ctr 2.3.7-r0, runc 1.4.3-r2 and CNI plugins 1.9.1-r4. `etcdctl` 3.5.12 remains cached for the existing exercises; its health query was tested against the new server. Snapshot restoration is outside this bootstrap test: the legacy `pb/ic` restore task must be migrated to a matching `etcdutl` before using it with etcd 3.6 snapshots.
+Cluster packages are pinned to the tested Alpine builds: Kubernetes 1.36.1-r2, cri-tools 1.36.0-r3, containerd/ctr 2.3.7-r0, runc 1.4.4-r0 and CNI plugins 1.9.1-r4. `etcdctl` 3.5.12 remains cached for the existing exercises; its health query was tested against the new server. Snapshot restoration is outside this bootstrap test: the legacy `pb/ic` restore task must be migrated to a matching `etcdutl` before using it with etcd 3.6 snapshots.
 
 After cloning and pulling LFS, verify the files without network access:
 

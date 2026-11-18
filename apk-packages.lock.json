@@ -1,8 +1,8 @@
 {
   "alpine": "3.24",
   "architecture": "x86_64",
-  "config_sha256": "2f5b9aa21d16926b6f1e4060d4e716cd6049e692ab3cbc5a230a9e0f46e66c12",
-  "resolved_at": "2026-11-04T15:30:25.845792+00:00",
+  "config_sha256": "386a1dc746bf6dd3b1c5d1e6bae696ba85838182151f3dbe1d895be6e6334375",
+  "resolved_at": "2026-11-18T12:21:45.591943+00:00",
   "repositories": [
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/main",
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/community"
@@ -51,7 +51,7 @@
       "containerd-ctr=2.3.7-r0",
       "containerd-openrc=2.3.7-r0",
       "cni-plugins=1.9.1-r4",
-      "runc=1.4.3-r2"
+      "runc=1.4.4-r0"
     ],
     "kubes": [
       "kubeadm=1.36.1-r2",
@@ -167,9 +167,9 @@
         "bytes": 118503
       },
       {
-        "file": "zlib-1.3.2-r1.apk",
-        "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
-        "bytes": 56210
+        "file": "zlib-1.4-r0.apk",
+        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "bytes": 56761
       }
     ],
     "py3-kubernetes": [
@@ -264,14 +264,14 @@
         "bytes": 149459
       },
       {
-        "file": "py3-certifi-2026.2.25-r1.apk",
-        "sha256": "76d3ae8c2f546ef975215236abb55624b9eb73d418165efda5d856ff6c9429f9",
-        "bytes": 5554
+        "file": "py3-certifi-2026.10.23-r0.apk",
+        "sha256": "185a041010566b7011a0469c024f8dbe6a6423537c24733acc0e62bdefae7663",
+        "bytes": 5894
       },
       {
-        "file": "py3-certifi-pyc-2026.2.25-r1.apk",
-        "sha256": "d9c6bb7cf1989a98004c17325304a0055e0240d47479c4269ec196ad4151a9f8",
-        "bytes": 3741
+        "file": "py3-certifi-pyc-2026.10.23-r0.apk",
+        "sha256": "596abf7ad424b81e0c1fa9681980e972466830f50082f98ff49d917a99370055",
+        "bytes": 4862
       },
       {
         "file": "py3-cffi-2.0.0-r0.apk",
@@ -484,9 +484,9 @@
         "bytes": 45094
       },
       {
-        "file": "zlib-1.3.2-r1.apk",
-        "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
-        "bytes": 56210
+        "file": "zlib-1.4-r0.apk",
+        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "bytes": 56761
       }
     ],
     "ufw": [
@@ -646,9 +646,9 @@
         "bytes": 118503
       },
       {
-        "file": "zlib-1.3.2-r1.apk",
-        "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
-        "bytes": 56210
+        "file": "zlib-1.4-r0.apk",
+        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "bytes": 56761
       }
     ],
     "debug": [
@@ -718,9 +718,9 @@
         "bytes": 1745
       },
       {
-        "file": "krb5-libs-1.22.2-r1.apk",
-        "sha256": "79502e864cafa97c7da8a07937422ee020f470526fe0c7fc8c2306302a7c2439",
-        "bytes": 765540
+        "file": "krb5-libs-1.22.3-r0.apk",
+        "sha256": "fad5b46a953e6a37a1bb61a84538fa08ecb6a07816f439eb06f2735aebfcbfbf",
+        "bytes": 767104
       },
       {
         "file": "libblkid-2.42.3-r1.apk",
@@ -893,9 +893,9 @@
         "bytes": 4686
       },
       {
-        "file": "tshark-4.6.6-r0.apk",
-        "sha256": "e35493c0aa06930c18168b694ffeeaa39edb3bebc61cf2f4542b915ab18198ad",
-        "bytes": 145101
+        "file": "tshark-4.6.9-r0.apk",
+        "sha256": "efd2dcd3a994917c7fbe519c327dc12ef4aa5b831056e14666727c6d2f7d5ad2",
+        "bytes": 145088
       },
       {
         "file": "userspace-rcu-0.15.3-r0.apk",
@@ -903,9 +903,9 @@
         "bytes": 84869
       },
       {
-        "file": "wireshark-common-4.6.6-r0.apk",
-        "sha256": "a527da8d51940ca7b301b63d48a0c5d0f4cf592ec4eee3821d5ee24d7368acc3",
-        "bytes": 25031639
+        "file": "wireshark-common-4.6.9-r0.apk",
+        "sha256": "77dd2fdee3eecc49441156f3cafaa77b6d93626f2a668a047a40ed23664f85a3",
+        "bytes": 25055991
       },
       {
         "file": "xz-libs-5.8.4-r0.apk",
@@ -913,9 +913,9 @@
         "bytes": 118503
       },
       {
-        "file": "zlib-1.3.2-r1.apk",
-        "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
-        "bytes": 56210
+        "file": "zlib-1.4-r0.apk",
+        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "bytes": 56761
       },
       {
         "file": "zstd-libs-1.5.7-r2.apk",
@@ -960,14 +960,19 @@
         "bytes": 415466
       },
       {
-        "file": "rsyslog-8.2604.0-r0.apk",
-        "sha256": "bdde22928c9b8474653db1f0122236e52da755ecab4e58184c99a440a6a5b6e2",
-        "bytes": 496095
+        "file": "rsyslog-8.2608.0-r0.apk",
+        "sha256": "f0cc5eabdcc4f31d18dd3a457d38aa5caed8308f588bc34303e46515ace7a5b1",
+        "bytes": 570621
       },
       {
-        "file": "rsyslog-openrc-8.2604.0-r0.apk",
-        "sha256": "bab2c1a97857585b1c005494179e6620e2bce5166baccf568000b9434611f9a7",
+        "file": "rsyslog-openrc-8.2608.0-r0.apk",
+        "sha256": "9b49ed114b57b1bd425167a1aa39b011c502cecad106dd9a79199e10ae006db0",
         "bytes": 2075
+      },
+      {
+        "file": "rsyslog-zstd-8.2608.0-r0.apk",
+        "sha256": "f50c2ce0653d4ed3994a1f407a3719ed725beecede5ada9a0bf2a021b83f0d5f",
+        "bytes": 4602
       },
       {
         "file": "yaml-0.2.5-r2.apk",
@@ -975,9 +980,14 @@
         "bytes": 45094
       },
       {
-        "file": "zlib-1.3.2-r1.apk",
-        "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
-        "bytes": 56210
+        "file": "zlib-1.4-r0.apk",
+        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "bytes": 56761
+      },
+      {
+        "file": "zstd-libs-1.5.7-r2.apk",
+        "sha256": "23c6065b0049b2406441564bcf0032515a43f78e80d76fcb85535a3803ef5d4e",
+        "bytes": 376646
       }
     ],
     "haproxy": [
@@ -1032,9 +1042,9 @@
         "bytes": 4686
       },
       {
-        "file": "zlib-1.3.2-r1.apk",
-        "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
-        "bytes": 56210
+        "file": "zlib-1.4-r0.apk",
+        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "bytes": 56761
       }
     ],
     "unbound": [
@@ -1146,9 +1156,9 @@
         "bytes": 1745
       },
       {
-        "file": "krb5-libs-1.22.2-r1.apk",
-        "sha256": "79502e864cafa97c7da8a07937422ee020f470526fe0c7fc8c2306302a7c2439",
-        "bytes": 765540
+        "file": "krb5-libs-1.22.3-r0.apk",
+        "sha256": "fad5b46a953e6a37a1bb61a84538fa08ecb6a07816f439eb06f2735aebfcbfbf",
+        "bytes": 767104
       },
       {
         "file": "libblkid-2.42.3-r1.apk",
@@ -1326,9 +1336,9 @@
         "bytes": 118503
       },
       {
-        "file": "zlib-1.3.2-r1.apk",
-        "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
-        "bytes": 56210
+        "file": "zlib-1.4-r0.apk",
+        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "bytes": 56761
       }
     ],
     "containerd": [
@@ -1413,14 +1423,14 @@
         "bytes": 323099
       },
       {
-        "file": "runc-1.4.3-r2.apk",
-        "sha256": "875fd2ce632520882972cb0e1ff87d3103dd27eb10fd3f4f737c1bc4c59667e6",
-        "bytes": 4098879
+        "file": "runc-1.4.4-r0.apk",
+        "sha256": "15c42ae8f9a49934cca71986cce1c73ba9e3066c561561eb49867536b2bbfbb7",
+        "bytes": 3812201
       },
       {
-        "file": "zlib-1.3.2-r1.apk",
-        "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
-        "bytes": 56210
+        "file": "zlib-1.4-r0.apk",
+        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "bytes": 56761
       }
     ],
     "kubes": [
@@ -1625,9 +1635,9 @@
         "bytes": 4686
       },
       {
-        "file": "zlib-1.3.2-r1.apk",
-        "sha256": "63aeea03c15a2f9018f81805cfc8aa926bdf5cd68921f22149c2fbb5d0ee9f47",
-        "bytes": 56210
+        "file": "zlib-1.4-r0.apk",
+        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
+        "bytes": 56761
       },
       {
         "file": "zstd-libs-1.5.7-r2.apk",

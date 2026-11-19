@@ -17,9 +17,8 @@
       "python3",
       "python3-pyc"
     ],
-    "py3-kubernetes": [
-      "py3-kubernetes",
-      "py3-kubernetes-pyc"
+    "py3-pip": [
+      "py3-pip"
     ],
     "ufw": [
       "ufw",

@@ -452,6 +452,50 @@
 
     ### ETCD ###
 
+  - name: Upload the offline Python wheels
+    tags: kubernetes-python
+    copy:
+      src: "{{ playbook_dir }}/../../.lfs/python/"
+      dest: /var/cache/kuberange/python/
+      owner: root
+      group: root
+      mode: '0644'
+      directory_mode: '0755'
+
+  - name: Upload the Python requirements lock
+    tags: kubernetes-python
+    copy:
+      src: "{{ playbook_dir }}/../../config/kubernetes-python.lock.txt"
+      dest: /var/cache/kuberange/python/requirements.txt
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: Create the Kubernetes Python virtual environment
+    tags: kubernetes-python
+    command: python3 -m venv --without-pip /opt/kuberange/ansible
+    args:
+      creates: /opt/kuberange/ansible/bin/python
+
+  - name: Install the locked Python dependencies offline
+    tags: kubernetes-python
+    command:
+      argv:
+        - python3
+        - -m
+        - pip
+        - --python
+        - /opt/kuberange/ansible/bin/python
+        - install
+        - --no-index
+        - --require-hashes
+        - --find-links
+        - /var/cache/kuberange/python
+        - --requirement
+        - /var/cache/kuberange/python/requirements.txt
+    register: kubernetes_python_install
+    changed_when: "'Successfully installed' in kubernetes_python_install.stdout"
+
   - name: Install etcdctl
     tags: etcd
     shell: apk add --allow-untrusted /.lfs/apk/etcd/*

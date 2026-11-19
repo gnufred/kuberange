@@ -64,6 +64,8 @@
     - ../../config/kubernetes.json
     - ../../config/network.json
   hosts: cp0
+  vars:
+    ansible_python_interpreter: /opt/kuberange/ansible/bin/python
   become: true
   become_user: root
 

@@ -5,6 +5,7 @@
 
   vars:
     sa_user: superadmin
+    ansible_python_interpreter: /opt/kuberange/ansible/bin/python
 
   tasks:
 

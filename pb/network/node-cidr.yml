@@ -6,6 +6,8 @@
     kind: Node
     name: "{{ inventory_hostname }}"
   delegate_to: cp0
+  vars:
+    ansible_python_interpreter: /opt/kuberange/ansible/bin/python
   register: registered_node
   until: registered_node.resources | length == 1
   retries: 30
@@ -31,3 +33,5 @@
         podCIDRs:
           - "{{ lab_nodes[inventory_hostname].pod_subnet }}"
   delegate_to: cp0
+  vars:
+    ansible_python_interpreter: /opt/kuberange/ansible/bin/python

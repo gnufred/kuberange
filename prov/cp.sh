@@ -10,5 +10,5 @@ esac
 # Make sure no packages are downloaded.
 truncate -s0 /etc/apk/repositories
 apk add --no-network --allow-untrusted /.lfs/apk/python3/*
-apk add --no-network --allow-untrusted /.lfs/apk/py3-kubernetes/*
+apk add --no-network --allow-untrusted /.lfs/apk/py3-pip/*
 find /var/cache/apk/ -name '*.apk' -delete

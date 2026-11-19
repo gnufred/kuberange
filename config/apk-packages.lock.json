@@ -1,8 +1,8 @@
 {
   "alpine": "3.24",
   "architecture": "x86_64",
-  "config_sha256": "c04daa80960f3b27e0347006a6bd417dc40193ade490a890dac87bf643589609",
-  "resolved_at": "2026-11-19T10:49:00.559377+00:00",
+  "config_sha256": "b6113b16d543936720ff969d787d3aeeb4c77d488568615637492b131bd334f4",
+  "resolved_at": "2026-11-19T10:56:29.434527+00:00",
   "repositories": [
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/main",
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/community"
@@ -12,9 +12,8 @@
       "python3",
       "python3-pyc"
     ],
-    "py3-kubernetes": [
-      "py3-kubernetes",
-      "py3-kubernetes-pyc"
+    "py3-pip": [
+      "py3-pip"
     ],
     "ufw": [
       "ufw",
@@ -170,12 +169,7 @@
         "bytes": 56761
       }
     ],
-    "py3-kubernetes": [
-      {
-        "file": "ca-certificates-bundle-20261020-r0.apk",
-        "sha256": "bb008f6d214b6af7576324659856fb63dc8dcb4373f8345ff706388696f1254d",
-        "bytes": 107116
-      },
+    "py3-pip": [
       {
         "file": "gdbm-1.26-r0.apk",
         "sha256": "3278ccba30b241168ca4ab93c919be805411b918fdc062f06d3684d12dc33ae3",
@@ -242,204 +236,14 @@
         "bytes": 22172
       },
       {
-        "file": "py3-asn1-0.6.3-r0.apk",
-        "sha256": "5ba9ad24cb22eb3115178b588b2ad1710202d55fe9cf46e949da871e3d597fee",
-        "bytes": 70043
+        "file": "py3-pip-26.1.2-r0.apk",
+        "sha256": "8ab13441fd0abfd625ac4e91eed5648d90a6422359d45469307bd78ad4f1b223",
+        "bytes": 1671707
       },
       {
-        "file": "py3-asn1-modules-0.4.2-r1.apk",
-        "sha256": "25a424bb017d57f03d83d52297d7d6ea88d1163306095021aedb840e7a78bc7f",
-        "bytes": 121273
-      },
-      {
-        "file": "py3-asn1-modules-pyc-0.4.2-r1.apk",
-        "sha256": "c7ce6b6e1bb9517819e4ad15a17600cee649f5a27f5345e5fd94c3dfe2916e86",
-        "bytes": 291638
-      },
-      {
-        "file": "py3-asn1-pyc-0.6.3-r0.apk",
-        "sha256": "ea6550f682d551289d09f265d2d1c18eecd1869e492e476250839af12b29678c",
-        "bytes": 149459
-      },
-      {
-        "file": "py3-certifi-2026.10.23-r0.apk",
-        "sha256": "185a041010566b7011a0469c024f8dbe6a6423537c24733acc0e62bdefae7663",
-        "bytes": 5894
-      },
-      {
-        "file": "py3-certifi-pyc-2026.10.23-r0.apk",
-        "sha256": "596abf7ad424b81e0c1fa9681980e972466830f50082f98ff49d917a99370055",
-        "bytes": 4862
-      },
-      {
-        "file": "py3-cffi-2.0.0-r0.apk",
-        "sha256": "125c7ee50bb9222b22e9ff57af487f3f52f68596e0f42d50dbad04a4e8b25b5f",
-        "bytes": 168678
-      },
-      {
-        "file": "py3-cffi-pyc-2.0.0-r0.apk",
-        "sha256": "b773146083d6f172e1a5cbe62f4905d82d40ad56511d320a6a27a6e41458f5e7",
-        "bytes": 178934
-      },
-      {
-        "file": "py3-charset-normalizer-3.4.9-r0.apk",
-        "sha256": "4a567523cd4f88d0c6cc84be1e81a55475045717f275eca48b8b66cf875b43a4",
-        "bytes": 62902
-      },
-      {
-        "file": "py3-charset-normalizer-pyc-3.4.9-r0.apk",
-        "sha256": "9d60cb0b5e508692a4a8ee3938cc0e31c4056d4f29f025e2b57f52dfdbeb2b08",
-        "bytes": 82455
-      },
-      {
-        "file": "py3-cparser-3.0-r1.apk",
-        "sha256": "0c01743da256578b61b6c9a35c8a334afbd8564327ac7802ac328974cd574f5e",
-        "bytes": 45620
-      },
-      {
-        "file": "py3-cparser-pyc-3.0-r1.apk",
-        "sha256": "a458b6052ea8db3318d353437924ae5c63dc4c30716ad527974e7a9f59710eaf",
-        "bytes": 85961
-      },
-      {
-        "file": "py3-cryptography-47.0.0-r0.apk",
-        "sha256": "8b0f226a1336cdb8266c664828f72de4975e5407001154578346df51830428bd",
-        "bytes": 1234907
-      },
-      {
-        "file": "py3-cryptography-pyc-47.0.0-r0.apk",
-        "sha256": "551182745cbba259a6721b932740ec471e60e4e311c7f90c47eb171dce8460f2",
-        "bytes": 209205
-      },
-      {
-        "file": "py3-dateutil-2.9.0-r4.apk",
-        "sha256": "6a2f2174e6d972af6c5e5aa1e8a52a5df821cdf0987689ac6e81ca4af6aa95ce",
-        "bytes": 228892
-      },
-      {
-        "file": "py3-dateutil-pyc-2.9.0-r4.apk",
-        "sha256": "d3a987913548a6929c41fdf1b52a9184b8dc7470174dccb4db43421596ad12ef",
-        "bytes": 130517
-      },
-      {
-        "file": "py3-durationpy-0.10-r1.apk",
-        "sha256": "4afa040affcdfa46e2199170f600475889bbc2ed40bd0f13c6a1820b16952d47",
-        "bytes": 5033
-      },
-      {
-        "file": "py3-durationpy-pyc-0.10-r1.apk",
-        "sha256": "619fb573d6c484437e8a5a063ed55c276075feab1b6347ac2e17a86027aa46e9",
-        "bytes": 4670
-      },
-      {
-        "file": "py3-google-auth-2.48.0-r1.apk",
-        "sha256": "0f748587f174f6c789d1689c5b532d6ec595e492b1aacb8e764e4ef88103b69c",
-        "bytes": 174242
-      },
-      {
-        "file": "py3-google-auth-pyc-2.48.0-r1.apk",
-        "sha256": "9c289b5789dce7ac4c8468c16ab97b7cbbeaee6be57790030f49888ab9c37d93",
-        "bytes": 298666
-      },
-      {
-        "file": "py3-idna-3.16-r0.apk",
-        "sha256": "d25444cc6e6d6c33760c2873b642fe219ab38f467968bca8a8ed5084a2178181",
-        "bytes": 74947
-      },
-      {
-        "file": "py3-idna-pyc-3.16-r0.apk",
-        "sha256": "6202064b0eb0e7d2ae87cf1a00f763bd687efde3885d11286f719c667b064395",
-        "bytes": 92718
-      },
-      {
-        "file": "py3-kubernetes-34.1.0-r1.apk",
-        "sha256": "98aca22d9c06b6fd02df211366746577f1a55319dca1977336b7656c490e7e0b",
-        "bytes": 1047588
-      },
-      {
-        "file": "py3-kubernetes-pyc-34.1.0-r1.apk",
-        "sha256": "fee1a84e0e2e1aa55adacea679417e84442d4e40f9ee2e36b9c63f185698772e",
-        "bytes": 1837392
-      },
-      {
-        "file": "py3-oauthlib-3.3.1-r2.apk",
-        "sha256": "bb5b36d12735c807a631ffbbcc96c3da40c17ebc853b94058397c4b814d29bae",
-        "bytes": 123890
-      },
-      {
-        "file": "py3-oauthlib-pyc-3.3.1-r2.apk",
-        "sha256": "b174fe95719e662ab04445d4ac7b15a39027dd17438e9791840d65a55d12538f",
-        "bytes": 189206
-      },
-      {
-        "file": "py3-requests-2.33.1-r0.apk",
-        "sha256": "a7063a0737f0ad89e79b8a25ebba4f724e893b6adaddd450b47e28aa4409c7f6",
-        "bytes": 60992
-      },
-      {
-        "file": "py3-requests-oauthlib-2.0.0-r2.apk",
-        "sha256": "47578ba4b50cb063f30e392f3e7822c2e8d365ff814d48fea778b12f3d9edeb6",
-        "bytes": 21238
-      },
-      {
-        "file": "py3-requests-oauthlib-pyc-2.0.0-r2.apk",
-        "sha256": "a91ebe64f44b119b18dabab8f65b7965b4694471d6bfb3921bf162710a6189bf",
-        "bytes": 25509
-      },
-      {
-        "file": "py3-requests-pyc-2.33.1-r0.apk",
-        "sha256": "8cfb8b870ec9e3a8e5e904cda1f4ee52ad53f3716d6bd4c73ea4945c7995a32f",
-        "bytes": 93707
-      },
-      {
-        "file": "py3-rsa-4.9.1-r1.apk",
-        "sha256": "4881541dbac59c841a3437bc238d072c29a72d726ae6c587a7d2ae5234f847b0",
-        "bytes": 28903
-      },
-      {
-        "file": "py3-rsa-pyc-4.9.1-r1.apk",
-        "sha256": "92d21544bdfbc5fe8e4d2414b9dd3035ba77200733afb93ddec01dc32aabfd7a",
-        "bytes": 46398
-      },
-      {
-        "file": "py3-six-1.17.0-r1.apk",
-        "sha256": "47bf6bd3f7e1b7f9d0c9584c5452159ef16552642aa0a697f5a84736de1ec94c",
-        "bytes": 11914
-      },
-      {
-        "file": "py3-six-pyc-1.17.0-r1.apk",
-        "sha256": "c80a325c498b6d6193dd0b089cb06f4fadb4ffda573e80ed621a11aeffcd9fe7",
-        "bytes": 19949
-      },
-      {
-        "file": "py3-urllib3-2.7.0-r0.apk",
-        "sha256": "9fde77a1efbe1da8482785eca2920a0b0fb97ebf0ffa0f647baf95057c484ba4",
-        "bytes": 119048
-      },
-      {
-        "file": "py3-urllib3-pyc-2.7.0-r0.apk",
-        "sha256": "2a1c0e9180d2be5cb69495ea73081d978490c56ba37e438b5394bc8912c76f01",
-        "bytes": 216295
-      },
-      {
-        "file": "py3-websocket-client-1.9.0-r1.apk",
-        "sha256": "85e11a7f4935f258da9d2a9bc7c8abb4e2196537014d5b7d884f90b796c1d37e",
-        "bytes": 38568
-      },
-      {
-        "file": "py3-websocket-client-pyc-1.9.0-r1.apk",
-        "sha256": "a3aaad67ee80804eaf90bbbfeeeae0a6a80712f55e716ecbcb0b9eceef42aa37",
-        "bytes": 70114
-      },
-      {
-        "file": "py3-yaml-6.0.3-r2.apk",
-        "sha256": "a5772e51d96b05507a9a3a62e2c83c1d6af548f3abf2c169f4f349b129d8faf7",
-        "bytes": 117641
-      },
-      {
-        "file": "py3-yaml-pyc-6.0.3-r2.apk",
-        "sha256": "785ba99d41824107924325c0ae43bd421e34a0d061cdb61e8ef88a346986172b",
-        "bytes": 87982
+        "file": "py3-pip-pyc-26.1.2-r0.apk",
+        "sha256": "b7a66a9b68224468f9398220df4620f74747ee98e7526c2968c469c09a04cc37",
+        "bytes": 2242420
       },
       {
         "file": "pyc-3.14.10-r1.apk",
@@ -475,11 +279,6 @@
         "file": "xz-libs-5.8.4-r0.apk",
         "sha256": "ab362dd515ead04c31a6c302163248da7aa4813e283c971e6dd3f789b453a1d9",
         "bytes": 118503
-      },
-      {
-        "file": "yaml-0.2.5-r2.apk",
-        "sha256": "c7359ffa9d0c785c3298300a1daa08b9199799748b40696ce4cd589194b57ab2",
-        "bytes": 45094
       },
       {
         "file": "zlib-1.4-r0.apk",

@@ -2,6 +2,14 @@
 
 See the [KubeRange README](../README.md) for host prerequisites and a starter cluster. These notes record how the range is provisioned and which layouts have been tested.
 
+## Stable stack validation
+
+On 19 November 2026, the Alpine 3.24.4 box built with the Packer QEMU 1.1.8 plugin and booted under libvirt. UEFI, SSH key replacement, `doas` and the QEMU guest agent worked on `lb0`. The signed package refresh brought HAProxy to 3.4.8 and installed Alpine's OpenSSL and GnuTLS security updates. HAProxy and Unbound passed their configuration checks.
+
+`cp0` and `wo0` bootstrapped Kubernetes 1.37.2 with containerd 2.4.2, runc 1.5.3 and CNI plugins 1.10.0. A Deployment using the cached pause image ran on `wo0`, and a temporary diagnostic Pod on `wo0` resolved the API Service through CoreDNS 1.15.0. The Python 37.0.3 client passed the provisioning tasks for node registration, DNS and RBAC. After a reboot of `wo0`, OpenRC restarted containerd and kubelet, and the DNS probe passed again.
+
+The etcd 3.7.4 snapshot exercise restored a ConfigMap to its earlier value on a single control plane. `cp1` then joined, both etcd endpoints passed health checks, and CoreDNS ran on both control planes. On `nf0`, a static NFSv4.2 PV/PVC let a non-root writer Pod save a file and a replacement reader Pod recover it.
+
 ## Provisioning details
 
 ### Host services
@@ -21,7 +29,7 @@ vagrant ssh cp0 -c 'kubectl --kubeconfig=/etc/kubernetes/admin.conf get nodes'
 vagrant ssh cp0 -c 'kubectl --kubeconfig=/etc/kubernetes/admin.conf get pods -n kube-system'
 ```
 
-This creates one control plane behind the existing load balancer. It is a fresh bootstrap, not an in-place upgrade of a Kubernetes 1.29 cluster. Existing VMs retain their disks; changing the base box applies when a VM is recreated. The argument-free `run/provision` builds the entire lab. The current network layout has been validated with all three control planes and two workers (`wo0`, `wo1`); the remaining workers have static address assignments ready for provisioning.
+This creates a fresh control plane behind the load balancer. Changing the base box takes effect when the VM is recreated. The argument-free `run/provision` builds the entire lab.
 
 ### Add the other control planes
 
@@ -94,7 +102,7 @@ For disposable Vagrant VMs, the same configuration uses `StrictHostKeyChecking=n
 
 ### Kubectl
 
-The control plane includes a matching kubectl 1.36.1. Use `vagrant ssh cp0 -c 'kubectl --kubeconfig=/etc/kubernetes/admin.conf get nodes'` from this directory. A host kubectl left at 1.29 is outside the supported version skew for this API; use a matching host client when connecting with `.kubeconfig`.
+The control plane includes kubectl 1.37.2. Use `vagrant ssh cp0 -c 'kubectl --kubeconfig=/etc/kubernetes/admin.conf get nodes'` from this directory. A host client within one minor version can connect using `.kubeconfig`.
 
 ## Build an Alpine base box
 
@@ -104,19 +112,9 @@ The control plane includes a matching kubectl 1.36.1. Use `vagrant ssh cp0 -c 'k
 
 The APK cache targets Alpine **3.24 / x86_64**, using the latest packages available in that stable branch when refreshed. `config/apk-packages.json` lists the requested packages and repositories; `config/apk-packages.lock.json` records every cached filename and SHA-256. Each directory includes its complete recursive dependency set, so provisioning needs no Alpine mirror access. Shared dependencies appear in multiple groups to keep each existing wildcard installation self-contained.
 
-Current OS package versions include Python 3.14.10-r1, UFW 0.36.2-r4, iptables 1.8.13-r0, HAProxy 3.4.7-r0, Unbound 1.25.2-r2, rsyslog 8.2608.0-r0 and nfs-utils 2.6.4-r6. Python's Kubernetes client is 34.1.0-r1. The iptables package uses the **nf_tables** backend rather than the previous cache's legacy backend.
+The regular Alpine packages include Python 3.14, OpenRC, UFW, iptables, HAProxy, Unbound, rsyslog and NFS tooling. The guest kernel and libraries follow Alpine 3.24 stable. The iptables package uses the **nf_tables** backend.
 
-Cluster packages are pinned to the tested Alpine builds: Kubernetes 1.36.1-r2, cri-tools 1.36.0-r3, containerd/ctr 2.3.7-r0, runc 1.4.4-r0 and CNI plugins 1.9.1-r4. `etcdctl` 3.5.12 remains cached for the existing exercises; its health query was tested against the new server. Snapshot restoration is outside this bootstrap test: the legacy `pb/ic` restore task must be migrated to a matching `etcdutl` before using it with etcd 3.6 snapshots.
-
-After cloning and pulling LFS, verify the files without network access:
-
-```bash
-run/cache-apk --check
-```
-
-To refresh OS packages from the configured Alpine 3.24 repositories, run `run/cache-apk`. This Linux x86_64 helper needs Python 3, `bsdtar` and internet access. It downloads a checksum-pinned Alpine package resolver and release keyring into `.cache/apk/`, resolves dependencies using Alpine's own solver, and verifies every APK signature before replacing any tracked package group. A temporary unsigned index describes the pinned cluster packages; downloaded packages still undergo strict signature verification. It does not start VMs or change the container image archives. Review the cache and lock changes, test provisioning, then commit the APKs with Git LFS.
-
-Provisioning's shell bootstrap rejects an older Alpine release before installing this cache and stops immediately if an APK installation fails. Recreate older lab VMs with the current base box instead of applying the 3.24 package cache to Alpine 3.19.
+After pulling LFS, run `run/cache-apk --check` to verify the APKs without network access. To refresh them online, run `run/cache-apk` on a Linux x86-64 host with Python 3.11+ and `bsdtar`. The helper checks the resolver and release keyring and verifies the downloaded APK signatures before replacing the cache. Provisioning requires the Alpine 3.24 base box.
 
 Validation on 4 November 2026: all 312 cached APK files passed Alpine signature verification. `lb0` and `cp0` were created from the Alpine 3.24.3 base box and provisioned using the local APK and image caches. Kubernetes reports `cp0` Ready on v1.36.1 with containerd 2.3.7; all six system Pods are 1/1 Running with zero restarts. API readiness succeeded directly and through the authenticated host connection to `https://10.1.2.10:9443`; etcd health and DNS queries through CoreDNS and Unbound passed.
 
@@ -126,32 +124,37 @@ Validation on 4 November 2026: all 312 cached APK files passed Alpine signature 
 
 Kubelet and runc use the `cgroupfs` driver with OpenRC's unified cgroup v2 hierarchy. Provisioning starts/enables the `cgroups` service and checks `/sys/fs/cgroup/cgroup.controllers`. BusyBox `stat -f %T` reports `UNKNOWN` for this filesystem on the tested box, so it is not used as the readiness check.
 
-Alpine's containerd 2.3 package supplies config version 4 and the CNI path `/usr/libexec/cni`. Provisioning writes `/etc/containerd/conf.d/20-kubernetes.toml`, which the packaged configuration imports. This pins `pinned_images.sandbox` to the cached pause image and keeps `SystemdCgroup = false`. The old `sandbox_image` replacement is no longer used. Containerd restarts when this drop-in changes.
+The release binaries use pinned upstream checksums in [config/binaries.json](../config/binaries.json). `run/cache-binaries --check` verifies them locally, and `run/cache-binaries` downloads any missing pins. Kubernetes uses `gcompat` from Alpine stable for the upstream kubelet binary. The runtime and CLI binaries are under `/usr/local/bin`. CNI plugins are under `/opt/cni/bin`.
 
-The offline containerd group includes its matching `containerd-ctr` client. For runtime diagnostics, use `vagrant ssh cp0 -c 'doas crictl images'` or `vagrant ssh cp0 -c 'doas ctr --namespace k8s.io images list'`.
+OpenRC runs the bundled containerd and kubelet services. `/etc/containerd/config.toml` imports `/etc/containerd/conf.d/20-kubernetes.toml`. This pins the pause image and selects the cached runc binary with the `cgroupfs` driver. Containerd restarts if provisioning changes its runtime, CNI plugins or configuration. Use `vagrant ssh cp0 -c 'doas crictl images'` or `vagrant ssh cp0 -c 'doas ctr --namespace k8s.io images list'` for runtime diagnostics.
+
+The control-plane Python environment at `/opt/kuberange/ansible` uses wheels from `.lfs/python/`. Ansible's Kubernetes modules use this interpreter for API operations. To repopulate the Alpine x86-64 Python 3.14 wheel cache for the committed lockfile, run:
+
+```bash
+python3 -m pip download --require-hashes --only-binary :all: \
+  --implementation cp --python-version 3.14 --abi cp314 --abi abi3 \
+  --platform musllinux_1_2_x86_64 --platform musllinux_1_1_x86_64 \
+  --dest .lfs/python -r config/kubernetes-python.lock.txt
+```
 
 ## Offline Kubernetes images
 
 The Git LFS OCI archives contain verified Linux/amd64 image manifests, configurations and layers from the official Kubernetes registry. `config/kubernetes-images.lock.json` records the index/manifest digests and archive SHA-256 values. Pull LFS after cloning to restore the archives; provisioning never downloads them.
 
-The control plane archive contains:
+The control-plane archive contains the API server, controller manager, scheduler, kube-proxy, CoreDNS, pause and etcd. The worker archive contains kube-proxy and pause. Both are imported into containerd's `k8s.io` namespace before kubeadm initializes or joins a node. Kubeadm's CoreDNS and etcd tags match the cached versions declared in `config/kubernetes.json`.
 
-- `registry.k8s.io/kube-apiserver:v1.36.1`
-- `registry.k8s.io/kube-controller-manager:v1.36.1`
-- `registry.k8s.io/kube-scheduler:v1.36.1`
-- `registry.k8s.io/kube-proxy:v1.36.1`
-- `registry.k8s.io/coredns/coredns:v1.14.2`
-- `registry.k8s.io/pause:3.10.2`
-- `registry.k8s.io/etcd:3.6.8-0`
+Run `run/cache-images` (Python 3.11+) to rebuild the archives and lockfile online. It selects the Linux/amd64 manifest for each image and verifies the manifest and layer digests. For an existing node, `run/playbook -h cp0 -b install -t blobs` imports the cached control-plane archive again.
 
-The worker archive contains only kube-proxy and pause. Both archives are imported with `ctr --namespace k8s.io images import --platform linux/amd64` before initialization or joining, creating the named image records and unpacking layers. All three control-plane imports/startups/joins and the `wo0`/`wo1` worker imports/joins have been tested on the current network layout. Each control-plane archive already contains CoreDNS, so its DaemonSet can start there offline. The remaining workers have not been validated.
+## Practice etcd snapshot recovery
 
-- `control-plane-v1.36.1-amd64.tar`: 144,558,080 bytes; SHA-256 `bf1a53a625fb3bfab468dea81a9bba5cdd18554f4b06c29903481214a9c86495`.
-- `worker-v1.36.1-amd64.tar`: 29,184,000 bytes; SHA-256 `57e58b15b992a5bc5f4ee72170f6378af4e189973111731a0d7c4cdd7ca6373f`.
+Use the single-control-plane cluster with `lb0` and `cp0`. A restore rolls back Kubernetes objects to their state at the time of the snapshot.
 
-To rebuild the archives online, run `run/cache-images` (Python 3.11+). It reads `config/kubernetes.json`, selects each registry's Linux/amd64 manifest, verifies content hashes and platform metadata, and writes deterministic OCI archives plus their lockfile. It does not start VMs. For an existing node, `run/playbook -h cp0 -b install -t blobs` imports the cached control plane archive again.
+```bash
+run/playbook -h cp0 -b ic -t etcd_backup
+run/playbook -h cp0 -b ic -t etcd_restore -x '{"backup_file":"/absolute/path/to/snapshot.db"}'
+```
 
-The bridge CNI is retained. The Service network is now separate from VM addresses; see the network addressing section. Earlier bootstrap checks do not establish general cross-node Pod connectivity or failover of the single load-balancer/DNS services.
+The backup playbook saves the snapshot under `pb/ic/files/`. Use the path printed by Ansible. The restore playbook checks that etcd has one member, restores and verifies the snapshot with `etcdutl`, and stops the API and etcd static Pods while it swaps the data directory. It waits for the restored API to become ready before discarding the previous data.
 
 ## Network addressing
 

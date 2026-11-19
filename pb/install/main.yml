@@ -341,9 +341,41 @@
 
     ### KUBES ###
 
-  - name: Install packages
+  - name: Install Kubernetes node prerequisites
     tags: kubes
-    shell: apk add --allow-untrusted /.lfs/apk/kubes/*
+    shell: apk add --no-network --allow-untrusted /.lfs/apk/kubes/*
+
+  - name: Install the upstream Kubernetes executables
+    tags: kubes
+    copy:
+      src: "{{ playbook_dir }}/../../.lfs/binaries/{{ upstream_binaries[item].file }}"
+      dest: "/usr/local/bin/{{ item }}"
+      owner: root
+      group: root
+      mode: '0755'
+    loop: [kubeadm, kubectl, kubelet]
+
+  - name: Verify that kubelet runs on Alpine
+    tags: kubes
+    command: /usr/local/bin/kubelet --version
+    changed_when: false
+
+  - name: Install the upstream CRI client
+    tags: kubes
+    unarchive:
+      src: "{{ playbook_dir }}/../../.lfs/binaries/{{ upstream_binaries.crictl.file }}"
+      dest: /usr/local/bin
+      owner: root
+      group: root
+
+  - name: Install the kubelet OpenRC service
+    tags: kubes
+    copy:
+      src: kubelet.openrc
+      dest: /etc/init.d/kubelet
+      owner: root
+      group: root
+      mode: '0755'
 
   - name: Enable cgroup v2 service
     tags: kubes
@@ -363,7 +395,7 @@
     tags: kubes
     assert:
       that: cgroup_controllers.stat.exists
-      fail_msg: 'Kubernetes 1.36 requires this lab to boot with OpenRC unified cgroups (cgroup v2).'
+      fail_msg: 'Kubernetes requires this lab to boot with OpenRC unified cgroups (cgroup v2).'
 
   - name: Configure kubelet for the private node network
     tags: kubes
@@ -387,7 +419,16 @@
       - run/certs
       - var
 
-  - name: Create Kubelet log directory
+  - name: Create the kubelet log directory
+    tags: kubes
+    file:
+      path: /var/log/kubelet
+      state: directory
+      owner: root
+      group: vagrant
+      mode: '0750'
+
+  - name: Create the kubelet log file
     tags: kubes
     file:
       path: /var/log/kubelet/kubelet.log

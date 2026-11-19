@@ -9,6 +9,11 @@ apiVersion: kubeadm.k8s.io/v1beta4
 kind: ClusterConfiguration
 kubernetesVersion: "{{ kubernetes_version }}"
 controlPlaneEndpoint: "10.1.2.10:6443"
+dns:
+  imageTag: "{{ kubernetes_coredns_image.rsplit(':', 1)[1] }}"
+etcd:
+  local:
+    imageTag: "{{ kubernetes_etcd_image.rsplit(':', 1)[1] }}"
 networking:
   serviceSubnet: "{{ lab_service_subnet }}"
   podSubnet: "{{ lab_pod_subnet }}"

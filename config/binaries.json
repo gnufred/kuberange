@@ -14,6 +14,26 @@
       "file": "cni-plugins-linux-amd64-v1.10.0.tgz",
       "url": "https://github.com/containernetworking/plugins/releases/download/v1.10.0/cni-plugins-linux-amd64-v1.10.0.tgz",
       "sha256": "ce8603d6a1bd448efba5bd6dc44f38dce349f821aa57e1bb354b52628ebf1853"
+    },
+    "kubeadm": {
+      "file": "kubeadm-v1.37.2-linux-amd64",
+      "url": "https://dl.k8s.io/release/v1.37.2/bin/linux/amd64/kubeadm",
+      "sha256": "e621beed70d51a71d283d67c6a5fd6db93e641dfe2213883128200d9e52a937b"
+    },
+    "kubectl": {
+      "file": "kubectl-v1.37.2-linux-amd64",
+      "url": "https://dl.k8s.io/release/v1.37.2/bin/linux/amd64/kubectl",
+      "sha256": "c04487523e7aa7d1493f7808174c899db93d7a9cf57531420cd76b9bd415f8f4"
+    },
+    "kubelet": {
+      "file": "kubelet-v1.37.2-linux-amd64",
+      "url": "https://dl.k8s.io/release/v1.37.2/bin/linux/amd64/kubelet",
+      "sha256": "a0e0c4baca9d7e1e0a674359f1615b562a1091dc414c6f7a6094ec23aa2cbe59"
+    },
+    "crictl": {
+      "file": "crictl-v1.37.0-linux-amd64.tar.gz",
+      "url": "https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.37.0/crictl-v1.37.0-linux-amd64.tar.gz",
+      "sha256": "67c983ee8a6bbce73d39a186e633c5fe4f8a70e62171ac3bd92a9c1b2c601670"
     }
   }
 }

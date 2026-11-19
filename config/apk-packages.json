@@ -55,11 +55,13 @@
       "tar"
     ],
     "kubes": [
-      "kubeadm=1.36.1-r2",
-      "kubectl=1.36.1-r2",
-      "kubelet=1.36.1-r2",
-      "kubelet-openrc=1.36.1-r2",
-      "cri-tools=1.36.0-r3"
+      "bridge",
+      "conntrack-tools",
+      "ethtool",
+      "gcompat",
+      "iproute2",
+      "iptables",
+      "socat"
     ],
     "etcd": [
       "etcd-ctl=3.5.12-r1"

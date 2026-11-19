@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+
+description="Kubernetes node agent"
+supervisor=supervise-daemon
+command=/usr/local/bin/kubelet
+output_log=/var/log/kubelet/kubelet.log
+error_log="$output_log"
+
+if [ -r /var/lib/kubelet/kubeadm-flags.env ]; then
+    . /var/lib/kubelet/kubeadm-flags.env
+fi
+command_args="$command_args ${KUBELET_KUBEADM_ARGS:-}"
+
+depend() {
+    need cgroups containerd
+    after net
+}

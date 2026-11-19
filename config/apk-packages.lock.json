@@ -1,8 +1,8 @@
 {
   "alpine": "3.24",
   "architecture": "x86_64",
-  "config_sha256": "c254943c72f6e31f47451ea38584946ce05c2cbf047a9c3a9d46d46d26948a3a",
-  "resolved_at": "2026-11-19T10:47:22.656738+00:00",
+  "config_sha256": "c04daa80960f3b27e0347006a6bd417dc40193ade490a890dac87bf643589609",
+  "resolved_at": "2026-11-19T10:49:00.559377+00:00",
   "repositories": [
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/main",
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/community"
@@ -50,11 +50,13 @@
       "tar"
     ],
     "kubes": [
-      "kubeadm=1.36.1-r2",
-      "kubectl=1.36.1-r2",
-      "kubelet=1.36.1-r2",
-      "kubelet-openrc=1.36.1-r2",
-      "cri-tools=1.36.0-r3"
+      "bridge",
+      "conntrack-tools",
+      "ethtool",
+      "gcompat",
+      "iproute2",
+      "iptables",
+      "socat"
     ],
     "etcd": [
       "etcd-ctl=3.5.12-r1"
@@ -1376,34 +1378,14 @@
         "bytes": 141092
       },
       {
-        "file": "conntrack-tools-openrc-1.4.9-r0.apk",
-        "sha256": "9e7b0d1720604d9a1ce16556d47ddfc12398f60470037134365acc418bc634c7",
-        "bytes": 3015
-      },
-      {
-        "file": "cri-tools-1.36.0-r3.apk",
-        "sha256": "59065bb7f6bab58705bf8aeabc37114f117bdaf44eb7fac502044e5f0a27f866",
-        "bytes": 21391979
-      },
-      {
         "file": "ethtool-7.0-r0.apk",
         "sha256": "f8c38acdc2f56fde73011f55730edeebaae13cb3bf710242f9107e1291b01fee",
         "bytes": 260588
       },
       {
-        "file": "ifupdown-ng-0.13.0-r0.apk",
-        "sha256": "21452f75f9e7bb5222ae90cfc00464952ed10fe4c9b99144abeb3537804e434c",
-        "bytes": 67057
-      },
-      {
-        "file": "ifupdown-ng-ethtool-0.13.0-r0.apk",
-        "sha256": "eb80af816d431ae91ccb1c5d8f0a55596b1390fff8ee51910a18224ddc76a813",
-        "bytes": 2347
-      },
-      {
-        "file": "ifupdown-ng-iproute2-0.13.0-r0.apk",
-        "sha256": "7f69ce2b8885a1f46a18c5d4683f24b2d810a0e355c6b36b1afea19ed35ccfe6",
-        "bytes": 4224
+        "file": "gcompat-1.1.0-r4.apk",
+        "sha256": "6f4f58bc5df7c9a6460710e30fd810eabc309cd6b7f209f491a9dfaf44859dbc",
+        "bytes": 32878
       },
       {
         "file": "iproute2-7.0.0-r0.apk",
@@ -1429,31 +1411,6 @@
         "file": "iptables-1.8.13-r0.apk",
         "sha256": "af3aaf9303c829ccee795725965ee6894816a98f9afa62b5dd52b25e6e62e8f0",
         "bytes": 319701
-      },
-      {
-        "file": "iptables-openrc-1.8.13-r0.apk",
-        "sha256": "ad3cedfc9b5e9ac702f693e6cb9b7a596826fc405a350fab3368fdd88794fa6c",
-        "bytes": 4199
-      },
-      {
-        "file": "kubeadm-1.36.1-r2.apk",
-        "sha256": "68d01cd01f521ec871c6f886af64ed22002325659a24f11a8b03defb2bff895d",
-        "bytes": 21362673
-      },
-      {
-        "file": "kubectl-1.36.1-r2.apk",
-        "sha256": "8618e38eea56923e9c3f3ff0dafe62778c00c9bf8061953f1ec394077d6ed198",
-        "bytes": 19531245
-      },
-      {
-        "file": "kubelet-1.36.1-r2.apk",
-        "sha256": "0245cfc564e5148f5dd59e78fcc1ea529b59f845ed876a2923539e770d65c5ef",
-        "bytes": 20639428
-      },
-      {
-        "file": "kubelet-openrc-1.36.1-r2.apk",
-        "sha256": "501f1adb6ef9ab35b380656af31e83d6ec5cc5128e550829305852c4844a8657",
-        "bytes": 2081
       },
       {
         "file": "libcap2-2.78-r0.apk",
@@ -1516,6 +1473,11 @@
         "bytes": 382098
       },
       {
+        "file": "libucontext-1.5.1-r0.apk",
+        "sha256": "fda972c0297b95efa2801de28d0a2995457cab85401c6d885a9c66641d79500c",
+        "bytes": 4516
+      },
+      {
         "file": "libxtables-1.8.13-r0.apk",
         "sha256": "4b5c981a77af40f965debe18f06c0c20268956f141a1bfc1c8ff6a406d914465",
         "bytes": 24615
@@ -1526,19 +1488,14 @@
         "bytes": 415466
       },
       {
+        "file": "musl-obstack-1.2.3-r2.apk",
+        "sha256": "0bb29f7975b24f18170bf0ccbbf81e85e5ccf05f913544a6d7378f03da535852",
+        "bytes": 4379
+      },
+      {
         "file": "ncurses-terminfo-base-6.6_p20260516-r0.apk",
         "sha256": "ce83be6d0bd10584a53c3a5868cc1595ce5f0f8e0b621f8f7f70b6144e521fc9",
         "bytes": 22172
-      },
-      {
-        "file": "openrc-0.63.2-r0.apk",
-        "sha256": "cda5779b160ddbdf1d1b9cc9514b7b72f0a18453792ff7c0a6eb6e28d5bc2225",
-        "bytes": 217933
-      },
-      {
-        "file": "openrc-user-0.63.2-r0.apk",
-        "sha256": "c350ab9e3de14d5eb33e609bca2f1c4c4d45c9cf3d1ee7a152800e76c26e3863",
-        "bytes": 6113
       },
       {
         "file": "readline-8.3.3-r1.apk",

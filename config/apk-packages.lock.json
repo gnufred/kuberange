@@ -1,8 +1,8 @@
 {
   "alpine": "3.24",
   "architecture": "x86_64",
-  "config_sha256": "386a1dc746bf6dd3b1c5d1e6bae696ba85838182151f3dbe1d895be6e6334375",
-  "resolved_at": "2026-11-18T12:21:45.591943+00:00",
+  "config_sha256": "9da772af16b6464aa5b49d2cccf24f60bc1bde466e833f3af789474fb09acfab",
+  "resolved_at": "2026-11-19T10:42:11.675037+00:00",
   "repositories": [
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/main",
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/community"
@@ -77,9 +77,9 @@
         "bytes": 35467
       },
       {
-        "file": "libcrypto3-3.5.9-r0.apk",
-        "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
-        "bytes": 1980198
+        "file": "libcrypto3-3.5.9-r1.apk",
+        "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+        "bytes": 1980117
       },
       {
         "file": "libexpat-2.10.0-r0.apk",
@@ -107,9 +107,9 @@
         "bytes": 5563
       },
       {
-        "file": "libssl3-3.5.9-r0.apk",
-        "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
-        "bytes": 381860
+        "file": "libssl3-3.5.9-r1.apk",
+        "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+        "bytes": 382098
       },
       {
         "file": "libstdc++-15.2.0-r5.apk",
@@ -189,9 +189,9 @@
         "bytes": 35467
       },
       {
-        "file": "libcrypto3-3.5.9-r0.apk",
-        "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
-        "bytes": 1980198
+        "file": "libcrypto3-3.5.9-r1.apk",
+        "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+        "bytes": 1980117
       },
       {
         "file": "libexpat-2.10.0-r0.apk",
@@ -219,9 +219,9 @@
         "bytes": 5563
       },
       {
-        "file": "libssl3-3.5.9-r0.apk",
-        "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
-        "bytes": 381860
+        "file": "libssl3-3.5.9-r1.apk",
+        "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+        "bytes": 382098
       },
       {
         "file": "libstdc++-15.2.0-r5.apk",
@@ -521,9 +521,9 @@
         "bytes": 35467
       },
       {
-        "file": "libcrypto3-3.5.9-r0.apk",
-        "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
-        "bytes": 1980198
+        "file": "libcrypto3-3.5.9-r1.apk",
+        "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+        "bytes": 1980117
       },
       {
         "file": "libexpat-2.10.0-r0.apk",
@@ -561,9 +561,9 @@
         "bytes": 5563
       },
       {
-        "file": "libssl3-3.5.9-r0.apk",
-        "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
-        "bytes": 381860
+        "file": "libssl3-3.5.9-r1.apk",
+        "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+        "bytes": 382098
       },
       {
         "file": "libstdc++-15.2.0-r5.apk",
@@ -698,9 +698,9 @@
         "bytes": 220074
       },
       {
-        "file": "gnutls-3.8.13-r0.apk",
-        "sha256": "8d3f3612145db8cd7feb83607187a60f809f06cfa3c2e74d310d58a6b053d54c",
-        "bytes": 969352
+        "file": "gnutls-3.8.14-r0.apk",
+        "sha256": "1dbdcd27b41ec454a533b188fda278763d1dfb579ec0c474d16ebbd6547dc463",
+        "bytes": 971430
       },
       {
         "file": "json-c-0.18-r1.apk",
@@ -738,9 +738,9 @@
         "bytes": 6095
       },
       {
-        "file": "libcrypto3-3.5.9-r0.apk",
-        "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
-        "bytes": 1980198
+        "file": "libcrypto3-3.5.9-r1.apk",
+        "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+        "bytes": 1980117
       },
       {
         "file": "libeconf-0.8.3-r0.apk",
@@ -803,9 +803,9 @@
         "bytes": 206002
       },
       {
-        "file": "libssl3-3.5.9-r0.apk",
-        "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
-        "bytes": 381860
+        "file": "libssl3-3.5.9-r1.apk",
+        "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+        "bytes": 382098
       },
       {
         "file": "libtasn1-4.21.0-r0.apk",
@@ -1002,24 +1002,24 @@
         "bytes": 1571
       },
       {
-        "file": "haproxy-3.4.7-r0.apk",
-        "sha256": "34b98c7247da96ec2d2abcde723d70448eb6a1255a4548c543258ebb7005b458",
-        "bytes": 2512741
+        "file": "haproxy-3.4.8-r0.apk",
+        "sha256": "73c6287b0cbf201271b09746343e88d3390036ca0eb055e5e831b55b8941ef7d",
+        "bytes": 2519332
       },
       {
-        "file": "haproxy-openrc-3.4.7-r0.apk",
-        "sha256": "ad00caaf368f129b5b602b34770bb42e52067d6e4be3a03d4e42450a8c020a70",
-        "bytes": 2231
+        "file": "haproxy-openrc-3.4.8-r0.apk",
+        "sha256": "680a122568981b33e9161965e36010b7aadafba6cdc7517bf0bf525377bb1f92",
+        "bytes": 2236
       },
       {
-        "file": "libcrypto3-3.5.9-r0.apk",
-        "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
-        "bytes": 1980198
+        "file": "libcrypto3-3.5.9-r1.apk",
+        "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+        "bytes": 1980117
       },
       {
-        "file": "libssl3-3.5.9-r0.apk",
-        "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
-        "bytes": 381860
+        "file": "libssl3-3.5.9-r1.apk",
+        "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+        "bytes": 382098
       },
       {
         "file": "lua5.4-libs-5.4.8-r0.apk",
@@ -1069,9 +1069,9 @@
         "bytes": 28296
       },
       {
-        "file": "libcrypto3-3.5.9-r0.apk",
-        "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
-        "bytes": 1980198
+        "file": "libcrypto3-3.5.9-r1.apk",
+        "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+        "bytes": 1980117
       },
       {
         "file": "libevent-2.1.13-r0.apk",
@@ -1084,9 +1084,9 @@
         "bytes": 63634
       },
       {
-        "file": "libssl3-3.5.9-r0.apk",
-        "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
-        "bytes": 381860
+        "file": "libssl3-3.5.9-r1.apk",
+        "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+        "bytes": 382098
       },
       {
         "file": "musl-1.2.6-r3.apk",
@@ -1181,9 +1181,9 @@
         "bytes": 6095
       },
       {
-        "file": "libcrypto3-3.5.9-r0.apk",
-        "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
-        "bytes": 1980198
+        "file": "libcrypto3-3.5.9-r1.apk",
+        "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+        "bytes": 1980117
       },
       {
         "file": "libeconf-0.8.3-r0.apk",
@@ -1231,9 +1231,9 @@
         "bytes": 5563
       },
       {
-        "file": "libssl3-3.5.9-r0.apk",
-        "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
-        "bytes": 381860
+        "file": "libssl3-3.5.9-r1.apk",
+        "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+        "bytes": 382098
       },
       {
         "file": "libstdc++-15.2.0-r5.apk",
@@ -1540,9 +1540,9 @@
         "bytes": 21582
       },
       {
-        "file": "libcrypto3-3.5.9-r0.apk",
-        "sha256": "6632d758d8f5e9ea3b650fe966f23bbf9a202f8b8dceecac93da135dec5e3689",
-        "bytes": 1980198
+        "file": "libcrypto3-3.5.9-r1.apk",
+        "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+        "bytes": 1980117
       },
       {
         "file": "libelf-0.195-r0.apk",
@@ -1590,9 +1590,9 @@
         "bytes": 67237
       },
       {
-        "file": "libssl3-3.5.9-r0.apk",
-        "sha256": "05e3393fb95aa5751ca2f9d242f659f6cff82c1cc7767cc2df4a086f7ad01877",
-        "bytes": 381860
+        "file": "libssl3-3.5.9-r1.apk",
+        "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+        "bytes": 382098
       },
       {
         "file": "libxtables-1.8.13-r0.apk",

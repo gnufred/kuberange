@@ -6,9 +6,9 @@
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/community"
   ],
   "resolver": {
-    "minirootfs": "alpine-minirootfs-3.24.3-x86_64.tar.gz",
-    "minirootfs_url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-minirootfs-3.24.3-x86_64.tar.gz",
-    "minirootfs_sha256": "f8e1cafba9b1b283b5d30d06f9885c8d2bc161ffe9083ade8e2e157813a53407",
+    "minirootfs": "alpine-minirootfs-3.24.4-x86_64.tar.gz",
+    "minirootfs_url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-minirootfs-3.24.4-x86_64.tar.gz",
+    "minirootfs_sha256": "cdaa38cb8de3537967ee5b6c9b6cd00cc962da2b018e6eea48696bb274923012",
     "apk_url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/apk-tools-static-3.0.9-r0.apk",
     "apk_sha256": "0a1a0682375f66a83b7b903f6e4638ccfe312547d50d336b5f2be9fc391281be"
   },

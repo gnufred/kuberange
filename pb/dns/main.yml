@@ -1,7 +1,7 @@
 ---
 - name: Configure load balancer DNS service
   vars_files:
-    - ../../network.json
+    - ../../config/network.json
   hosts: lb0
   become: true
   become_user: root
@@ -61,8 +61,8 @@
 
 - name: Configure cluster DNS service
   vars_files:
-    - ../../kubernetes.json
-    - ../../network.json
+    - ../../config/kubernetes.json
+    - ../../config/network.json
   hosts: cp0
   become: true
   become_user: root

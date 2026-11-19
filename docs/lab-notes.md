@@ -102,7 +102,7 @@ The control plane includes a matching kubectl 1.36.1. Use `vagrant ssh cp0 -c 'k
 
 ## Offline OS packages
 
-The APK cache targets Alpine **3.24 / x86_64**, using the latest packages available in that stable branch when refreshed. `apk-packages.json` lists the requested packages and repositories; `apk-packages.lock.json` records every cached filename and SHA-256. Each directory includes its complete recursive dependency set, so provisioning needs no Alpine mirror access. Shared dependencies appear in multiple groups to keep each existing wildcard installation self-contained.
+The APK cache targets Alpine **3.24 / x86_64**, using the latest packages available in that stable branch when refreshed. `config/apk-packages.json` lists the requested packages and repositories; `config/apk-packages.lock.json` records every cached filename and SHA-256. Each directory includes its complete recursive dependency set, so provisioning needs no Alpine mirror access. Shared dependencies appear in multiple groups to keep each existing wildcard installation self-contained.
 
 Current OS package versions include Python 3.14.10-r1, UFW 0.36.2-r4, iptables 1.8.13-r0, HAProxy 3.4.7-r0, Unbound 1.25.2-r2, rsyslog 8.2608.0-r0 and nfs-utils 2.6.4-r6. Python's Kubernetes client is 34.1.0-r1. The iptables package uses the **nf_tables** backend rather than the previous cache's legacy backend.
 
@@ -122,7 +122,7 @@ Validation on 4 November 2026: all 312 cached APK files passed Alpine signature 
 
 ## Kubernetes and containerd configuration
 
-`kubernetes.json` pins the Kubernetes version and image references used by the Ansible tasks and image-cache helper. The kubeadm template uses `kubeadm.k8s.io/v1beta4` and explicitly sets `kubernetesVersion`, so offline initialization does not query the upstream release channel. It advertises the control plane's private `eth1` address. Kubelet's OpenRC arguments likewise select the private node address.
+`config/kubernetes.json` pins the Kubernetes version and image references used by the Ansible tasks and image-cache helper. The kubeadm template uses `kubeadm.k8s.io/v1beta4` and explicitly sets `kubernetesVersion`, so offline initialization does not query the upstream release channel. It advertises the control plane's private `eth1` address. Kubelet's OpenRC arguments likewise select the private node address.
 
 Kubelet and runc use the `cgroupfs` driver with OpenRC's unified cgroup v2 hierarchy. Provisioning starts/enables the `cgroups` service and checks `/sys/fs/cgroup/cgroup.controllers`. BusyBox `stat -f %T` reports `UNKNOWN` for this filesystem on the tested box, so it is not used as the readiness check.
 
@@ -132,7 +132,7 @@ The offline containerd group includes its matching `containerd-ctr` client. For 
 
 ## Offline Kubernetes images
 
-The Git LFS OCI archives contain verified Linux/amd64 image manifests, configurations and layers from the official Kubernetes registry. `kubernetes-images.lock.json` records the index/manifest digests and archive SHA-256 values. Pull LFS after cloning to restore the archives; provisioning never downloads them.
+The Git LFS OCI archives contain verified Linux/amd64 image manifests, configurations and layers from the official Kubernetes registry. `config/kubernetes-images.lock.json` records the index/manifest digests and archive SHA-256 values. Pull LFS after cloning to restore the archives; provisioning never downloads them.
 
 The control plane archive contains:
 
@@ -149,13 +149,13 @@ The worker archive contains only kube-proxy and pause. Both archives are importe
 - `control-plane-v1.36.1-amd64.tar`: 144,558,080 bytes; SHA-256 `bf1a53a625fb3bfab468dea81a9bba5cdd18554f4b06c29903481214a9c86495`.
 - `worker-v1.36.1-amd64.tar`: 29,184,000 bytes; SHA-256 `57e58b15b992a5bc5f4ee72170f6378af4e189973111731a0d7c4cdd7ca6373f`.
 
-To rebuild the archives online, run `run/cache-images` (Python 3.11+). It reads `kubernetes.json`, selects each registry's Linux/amd64 manifest, verifies content hashes and platform metadata, and writes deterministic OCI archives plus their lockfile. It does not start VMs. For an existing node, `run/playbook -h cp0 -b install -t blobs` imports the cached control plane archive again.
+To rebuild the archives online, run `run/cache-images` (Python 3.11+). It reads `config/kubernetes.json`, selects each registry's Linux/amd64 manifest, verifies content hashes and platform metadata, and writes deterministic OCI archives plus their lockfile. It does not start VMs. For an existing node, `run/playbook -h cp0 -b install -t blobs` imports the cached control plane archive again.
 
 The bridge CNI is retained. The Service network is now separate from VM addresses; see the network addressing section. Earlier bootstrap checks do not establish general cross-node Pod connectivity or failover of the single load-balancer/DNS services.
 
 ## Network addressing
 
-`network.json` defines shared Service/DNS settings and each Kubernetes node's private address and Pod subnet. Vagrant and the generated `/etc/hosts` entries use the same node address map. The VM private network stays `10.1.2.0/24`; Kubernetes Services use `10.96.0.0/16`, with the API Service at `10.96.0.1` and CoreDNS at `10.96.0.10`. Kubeadm and kubelet use the same DNS address. Changing the Service CIDR requires a fresh cluster; this configuration is not an in-place migration of existing VMs.
+`config/network.json` defines shared Service/DNS settings and each Kubernetes node's private address and Pod subnet. Vagrant and the generated `/etc/hosts` entries use the same node address map. The VM private network stays `10.1.2.0/24`; Kubernetes Services use `10.96.0.0/16`, with the API Service at `10.96.0.1` and CoreDNS at `10.96.0.10`. Kubeadm and kubelet use the same DNS address. Changing the Service CIDR requires a fresh cluster; this configuration is not an in-place migration of existing VMs.
 
 Pods query CoreDNS directly. CoreDNS answers `cluster.local` and forwards other queries to Unbound on `lb0` (`10.1.2.10`). Unbound retains its `cluster.local` forwarding zone for host/VM clients, now pointing to the DNS Service IP. Its other queries go to libvirt DNS at `192.168.121.1`, which uses the host resolver. Direct requests from `lb0` to the old public upstream `1.1.1.1` timed out on the test host, while libvirt DNS answered; no host firewall policy was changed. CoreDNS handles cluster names authoritatively, so this split forwarding does not send unresolved cluster names back to Unbound.
 
@@ -211,7 +211,7 @@ The bridge does not install its per-Pod masquerading rules. `/etc/ufw/after.init
 
 Incoming/outgoing VM access retains the existing permissive training policy. The default routed policy is explicitly **deny**, checked after IP forwarding is enabled. Scoped forwarding rules permit local-to-remote Pod traffic, remote-to-local Pod traffic, Pod DNS to Unbound, Pod API requests to the control planes, Unbound queries reaching CoreDNS after Service DNAT, and node/VM-proxied DNS queries reaching a control plane's local Pod subnet over UDP/TCP port 53. `run/playbook -h cp0,wo0,wo1 -b install -t pod-network` reapplies the networking configuration. The DNS playbook waits for CoreDNS availability, so failed Pod startup cannot be reported as successful provisioning.
 
-This is a static lab network: adding a node requires extending `network.json` and applying peer routes on existing nodes. NetworkPolicy enforcement, routing failover, load-balancer HA, arbitrary Pod Internet egress and multi-worker NFS sharing are outside the current validation. No additional networking component is required.
+This is a static lab network: adding a node requires extending `config/network.json` and applying peer routes on existing nodes. NetworkPolicy enforcement, routing failover, load-balancer HA, arbitrary Pod Internet egress and multi-worker NFS sharing are outside the current validation. No additional networking component is required.
 
 Validation on 4 November 2026 (static routing checkpoint): `cp0`, `wo0` and `wo1` are Ready on v1.36.1 with eight ready system Pods. All three diagnostic Pods passed the direct/Service/DNS/API matrix above, then passed it again after all three Kubernetes VMs were rebooted with `--no-provision`. After reboot, each node had IP forwarding enabled, all eight peer routes, exactly one Pod egress NAT rule, and UFW's routed deny policy. Two UFW reloads on `wo1` also preserved exactly one NAT rule. Reapplying the final Pod-network playbook reported zero changes on all three nodes; reapplying CoreDNS and its availability check reported zero changes. Diagnostic Pods, Services, namespace, image records and uploaded archives were removed. The four requested VMs (`lb0`, `cp0`, `wo0`, `wo1`) remain running. Other nodes were not started for this checkpoint.
 

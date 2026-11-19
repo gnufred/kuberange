@@ -35,8 +35,8 @@
   ### NODES ###
 - name: Configure OS and install K8s packages
   vars_files:
-    - ../../kubernetes.json
-    - ../../network.json
+    - ../../config/kubernetes.json
+    - ../../config/network.json
   hosts: cp0, cp1, cp2, wo0, wo1, wo2, wo3, wo4, wo5
   become: true
   become_user: root
@@ -50,7 +50,7 @@
       that:
         - inventory_hostname in lab_nodes
         - ansible_facts[lab_node_interface]['ipv4']['address'] == lab_nodes[inventory_hostname].address
-      fail_msg: 'The node private address must match network.json before configuring Pod routes.'
+      fail_msg: 'The node private address must match config/network.json before configuring Pod routes.'
 
     ### KERNEL ###
 
@@ -341,7 +341,7 @@
 
 - name: Load offline control plane container images
   vars_files:
-    - ../../kubernetes.json
+    - ../../config/kubernetes.json
   hosts: cp0, cp1, cp2
   become: true
   become_user: root
@@ -409,7 +409,7 @@
   ### WORKER IMAGES ###
 - name: Load offline worker container images
   vars_files:
-    - ../../kubernetes.json
+    - ../../config/kubernetes.json
   hosts: wo0, wo1, wo2, wo3, wo4, wo5
   become: true
   become_user: root

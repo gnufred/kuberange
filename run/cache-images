@@ -10,7 +10,7 @@ import tempfile
 import urllib.request
 
 LAB = Path(__file__).resolve().parent.parent
-CONFIG = LAB / 'kubernetes.json'
+CONFIG = LAB / 'config' / 'kubernetes.json'
 WORK = LAB / '.cache/images'
 OUTPUT = LAB / '.lfs/images'
 ACCEPT = ', '.join(['application/vnd.oci.image.index.v1+json',
@@ -111,7 +111,7 @@ def main():
     archives = [write_archive(OUTPUT / f'control-plane-{version}-amd64.tar', images),
                 write_archive(OUTPUT / f'worker-{version}-amd64.tar', [by_reference[ref] for ref in config['kubernetes_worker_images']])]
     lock = {'kubernetes_version': version, 'platform': 'linux/amd64', 'images': images, 'archives': archives}
-    (LAB / 'kubernetes-images.lock.json').write_text(json.dumps(lock, indent=2) + '\n')
+    (LAB / 'config' / 'kubernetes-images.lock.json').write_text(json.dumps(lock, indent=2) + '\n')
     for archive in archives:
         print(f'{archive["file"]}: {archive["sha256"]}', flush=True)
 

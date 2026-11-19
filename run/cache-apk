@@ -12,8 +12,8 @@ import tempfile
 import urllib.request
 
 LAB = Path(__file__).resolve().parent.parent
-CONFIG = LAB / 'apk-packages.json'
-LOCK = LAB / 'apk-packages.lock.json'
+CONFIG = LAB / 'config' / 'apk-packages.json'
+LOCK = LAB / 'config' / 'apk-packages.lock.json'
 CACHE = LAB / '.lfs/apk'
 WORK = LAB / '.cache/apk'
 

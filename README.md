@@ -114,4 +114,4 @@ Use `vagrant destroy wo0 cp0 lb0` when you want a fresh start. It asks for confi
 | A node or system Pod stays unready | Check nodes and Pods with the commands above. Inspect guest logs with `run/log cat -h wo0 -n kubelet` or list the local container images with `vagrant ssh wo0 -c 'doas crictl images'`. |
 | A practice workload reports `ImagePullBackOff` | The worker cache contains only pause and kube-proxy. Use a cached image, import the workload image on its node, or give the guest access to its registry. |
 
-See [lab notes](docs/lab-notes.md) for playbooks, network and DNS design, storage permissions, asset refresh commands and past validation. See the [Alpine box recipe](build/alpine/README.md) to rebuild the base box.
+Shared settings and cache lockfiles live in [config/](config/). See [lab notes](docs/lab-notes.md) for playbooks, network and DNS design, storage permissions, asset refresh commands and past validation. See the [Alpine box recipe](build/alpine/README.md) to rebuild the base box.

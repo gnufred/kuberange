@@ -1,8 +1,8 @@
 {
   "alpine": "3.24",
   "architecture": "x86_64",
-  "config_sha256": "b6113b16d543936720ff969d787d3aeeb4c77d488568615637492b131bd334f4",
-  "resolved_at": "2026-11-19T10:56:29.434527+00:00",
+  "config_sha256": "337fd8e89dc7be656593282dbf4f394cd29ac1c0a0e78ba9e038b541943840b7",
+  "resolved_at": "2026-11-19T10:58:40.028723+00:00",
   "repositories": [
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/main",
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/community"
@@ -56,9 +56,6 @@
       "iproute2",
       "iptables",
       "socat"
-    ],
-    "etcd": [
-      "etcd-ctl=3.5.12-r1"
     ]
   },
   "packages": {
@@ -1320,18 +1317,6 @@
         "file": "zstd-libs-1.5.7-r2.apk",
         "sha256": "23c6065b0049b2406441564bcf0032515a43f78e80d76fcb85535a3803ef5d4e",
         "bytes": 376646
-      }
-    ],
-    "etcd": [
-      {
-        "file": "etcd-ctl-3.5.12-r1.apk",
-        "sha256": "d87d37636bb43267cd57ecac3122956dd486655af11d71ff12f4545a08fd3eb7",
-        "bytes": 6834307
-      },
-      {
-        "file": "musl-1.2.6-r3.apk",
-        "sha256": "e142255d0fa397f14318996bc10378093dcc069dc3dd1b6818c8f28a789c21da",
-        "bytes": 415466
       }
     ]
   }

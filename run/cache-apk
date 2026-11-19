@@ -83,21 +83,10 @@ def refresh():
     apk, keys = bootstrap(config)
     with tempfile.TemporaryDirectory(prefix='refresh-', dir=WORK) as directory:
         stage = Path(directory)
-        pinned = stage / 'pinned/x86_64'
-        pinned.mkdir(parents=True)
-        for item in config['pinned']:
-            source = CACHE / item['group'] / item['file']
-            if sha256(source) != item['sha256']:
-                raise ValueError('Pinned cluster package changed: ' + str(source))
-            shutil.copy2(source, pinned / source.name)
-        # This temporary unsigned index only describes already pinned, signed APKs.
-        # Every fetched APK is independently signature-verified below.
-        run([apk, '--keys-dir', keys, 'index', '--rewrite-arch', config['architecture'],
-             '--output', pinned / 'APKINDEX.tar.gz', *sorted(pinned.glob('*.apk'))])
         resolver = stage / 'root'
         resolver.mkdir()
         command = [apk, '--root', resolver, '--arch', config['architecture'],
-                   '--keys-dir', keys, '--repository', pinned.parent]
+                   '--keys-dir', keys]
         for repository in config['repositories']:
             command += ['--repository', repository]
         packages = {}
@@ -105,11 +94,10 @@ def refresh():
             print(f'Fetching {group}: {", ".join(roots)}', flush=True)
             target = stage / 'packages' / group
             target.mkdir(parents=True)
-            run([*command, '--allow-untrusted', 'fetch', '--recursive', '--output', target, *roots])
+            run([*command, 'fetch', '--recursive', '--output', target, *roots])
             files = sorted(target.glob('*.apk'))
             if not files:
                 raise ValueError('No APKs fetched for ' + group)
-            # Strict verification: no --allow-untrusted here.
             run([apk, '--keys-dir', keys, 'verify', *files])
             packages[group] = [{'file': p.name, 'sha256': sha256(p), 'bytes': p.stat().st_size} for p in files]
         # All downloads and signatures succeed before replacing any tracked cache.

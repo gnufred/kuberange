@@ -125,38 +125,39 @@
       ]
     },
     {
-      "reference": "registry.k8s.io/etcd:3.7.0-0",
-      "index_digest": "sha256:6ecefbe2510c4a30573a62a4d6dd175acf881ca67003fcd91849a16df7a724d5",
-      "digest": "sha256:1f445fa5dd06b08f3c0cf9f46e2891e9bc66cbf7e0b9c66627c40658edf4bc98",
-      "size": 3858,
+      "reference": "registry.k8s.io/etcd:3.7.4-0",
+      "index_digest": "sha256:47d217be8ec4ca943954b5f4bf8029ee9bc0ffb05fbe2a44d579a1f640e03ed4",
+      "digest": "sha256:10547c8120e9d954bb992e59cc33466c23321ec284096be87538a431bcc629ff",
+      "size": 4069,
       "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
       "blobs": [
-        "sha256:270fbeb69717150d82de2f31e6d6a93a6a60f8843d63df68cebe33c4b59c5f78",
-        "sha256:875ea9878944f3daf508d0e1b87b39ebc1ecce3ccaf3ed11a3cc59f1852a540a",
-        "sha256:bfb59b82a9b65e47d485e53b3e815bca3b3e21a095bd0cb88ced9ac0b48062bf",
-        "sha256:39dc083afc39bd8dc43d456fe7ff7d39292e593bb2769972c11bb2e5f9119386",
-        "sha256:bf7a4185f01524837d19abde915ffde84e64368b250f5b5e9f6f75aea62a11d4",
+        "sha256:f4ffa6a96403c4245617d1ce46b6530a2359e79fbbff85face0ae305f9a811dd",
+        "sha256:2cc7ee286bf3a9e6af5f71756d7fc8e22e23ce65fec9047d774511ffcef79fa8",
+        "sha256:c172f21841dff4c8cf45cde46589c1c2616cefe7e819965e92e6d3475c428aa0",
+        "sha256:fc4330146a1cc76e06ce6def693f5da42c16e2615be6f49e1ea5b6e249ff8262",
+        "sha256:777e9d0975e474519f4f14ff87e547cbb8f9fff4cfc4f1a147ac81906880e503",
+        "sha256:d6b1b89eccacc15c2420b2776d72c1dae334a00805ed9af54bf2f71e4d536f28",
         "sha256:b6824ed73363f94b3b2b44084c51c31bc32af77a96861d49e16f91e3ab6bed71",
         "sha256:7c12895b777bcaa8ccae0605b4de635b68fc32d60fa08f421dc3818bf55ee212",
         "sha256:3214acf345c0cc6bbdb56b698a41ccdefc624a09d6beb0d38b5de0b2303ecaf4",
         "sha256:52630fc75a18675c530ed9eba5f55eca09b03e91bd5bc15307918bbc1a7e7296",
         "sha256:dd64bf2dd177757451a98fcdc999a339c35dee5d9872d8f4dc69c8f3c4dd0112",
         "sha256:b839dfae01f66e15c6a8b63520557ed315bdfe036342fa7a0c537259f10d7a9a",
-        "sha256:dcaa5a89b0ccda4b283e16d0b4d0891cd93d5fe05c6798f7806781a6a2d84354",
-        "sha256:069d1e267530c2e681fbd4d481553b4d05f98082b18fafac86e7f12996dddd0b",
-        "sha256:127b996dd5971bc6ff9c3324157efece08ce15af2fe4b14682e63fbefc57d251",
-        "sha256:4c557850794757a6b856a732741da52dea6c1c2ab7cc2b2e7782a24b76c5aa99",
-        "sha256:3288a117248abccbd2588be777cc65a68fd64d3a72a9539caabce79b9af56aeb",
-        "sha256:dd8944595dfb226bf07cecc61298dfa55ecb4a8141b86eade3220a435a563c79",
-        "sha256:cef6d7de07c02da86c297c3257e2acf96123bfeeafff8a106f43beb332dccac6"
+        "sha256:ebddc55facdc6b1f7e0f30816a5fc7cc62f38abdf76c0a8b0a0ce52085754795",
+        "sha256:46e3da9d7aa1385fc1ad4e71500ba7cd6d6d06cfc9bbde71c40b052e1101e32b",
+        "sha256:578c2a2fe06deac64c4829bcea3ca13596b90557372cd4bbe6173e63fcc450ca",
+        "sha256:c2b863a70833f43658e8610eb9afce73a4a249d3e8bcde049b79a3bf9de4b697",
+        "sha256:75cbf4bc087db19102169787cbcf45590170ab49ea91a7c22402de36f2598886",
+        "sha256:2bd7c2ff3813d24dc581a0dc429975848c624d42d2b5057e1aa57c782c3d16ea",
+        "sha256:28dd884318786b4189eae76f8688556fafe233b29a46271663a62491a885acfb"
       ]
     }
   ],
   "archives": [
     {
       "file": "control-plane-v1.37.2-amd64.tar",
-      "sha256": "8cd7bd966553561618c50987e58d3f10dd74d72ffb75650d924e24d30cedb85f",
-      "bytes": 149237760
+      "sha256": "665a766cc90c55640c33239019801ad37c123b3928639b91a29ba41bc0ceb4e8",
+      "bytes": 150446080
     },
     {
       "file": "worker-v1.37.2-amd64.tar",

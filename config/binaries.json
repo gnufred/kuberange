@@ -34,6 +34,11 @@
       "file": "crictl-v1.37.0-linux-amd64.tar.gz",
       "url": "https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.37.0/crictl-v1.37.0-linux-amd64.tar.gz",
       "sha256": "67c983ee8a6bbce73d39a186e633c5fe4f8a70e62171ac3bd92a9c1b2c601670"
+    },
+    "etcd": {
+      "file": "etcd-v3.7.4-linux-amd64.tar.gz",
+      "url": "https://github.com/etcd-io/etcd/releases/download/v3.7.4/etcd-v3.7.4-linux-amd64.tar.gz",
+      "sha256": "a0d47d07d081c12611fe69dc81a16ae8dd758401c0fe3a83d508823a1dac558e"
     }
   }
 }

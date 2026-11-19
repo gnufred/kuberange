@@ -61,16 +61,6 @@
       "iproute2",
       "iptables",
       "socat"
-    ],
-    "etcd": [
-      "etcd-ctl=3.5.12-r1"
     ]
-  },
-  "pinned": [
-    {
-      "group": "etcd",
-      "file": "etcd-ctl-3.5.12-r1.apk",
-      "sha256": "d87d37636bb43267cd57ecac3122956dd486655af11d71ff12f4545a08fd3eb7"
-    }
-  ]
+  }
 }

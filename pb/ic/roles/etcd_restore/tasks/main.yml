@@ -1,25 +1,83 @@
-# https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#restoring-an-etcd-cluster
-#
-# This can only succeed when there is a single control plane.
-# Otherwise, the extra etcd nodes will restore the quorum after the restart.
-# Effectively overwriting the restored snapshot.
 ---
-- name: Push snapshot
+- name: Check the current etcd members
+  command: etcdctl member list --write-out=json
+  register: etcd_members
+  changed_when: false
+
+- name: Require a single-member cluster
+  assert:
+    that: (etcd_members.stdout | from_json).members | length == 1
+    fail_msg: Restore a snapshot on the single-control-plane practice cluster.
+
+- name: Allocate a private restore directory on the etcd filesystem
+  tempfile:
+    path: /var/lib
+    prefix: kuberange-etcd-restore-
+    state: directory
+  register: etcd_restore
+
+- name: Upload the snapshot
   copy:
-    src: "{{ backup_file }}" 
-    dest: /tmp/snap.db
+    src: "{{ backup_file }}"
+    dest: "{{ etcd_restore.path }}/snapshot.db"
+    mode: '0600'
 
-- name: Delete etc data folder
-  file:
-    path: /var/lib/etcd/
-    state: absent
+- name: Restore and verify the snapshot before stopping etcd
+  command:
+    argv:
+      - etcdutl
+      - snapshot
+      - restore
+      - "{{ etcd_restore.path }}/snapshot.db"
+      - --data-dir
+      - "{{ etcd_restore.path }}/restored"
+      - --name
+      - "{{ inventory_hostname }}"
+      - --initial-cluster
+      - "{{ inventory_hostname }}=https://{{ lab_nodes[inventory_hostname].address }}:2380"
+      - --initial-advertise-peer-urls
+      - "https://{{ lab_nodes[inventory_hostname].address }}:2380"
+      - --bump-revision
+      - '1000000000'
+      - --mark-compacted
 
-- name: Restore etcd snapshot
+- name: Swap etcd data with the API server and etcd stopped
   shell: |
-    source /root/.bashrc
-    etcdctl --data-dir=/var/lib/etcd snapshot restore /tmp/snap.db
+    set -eu
+    restore_dir={{ etcd_restore.path | quote }}
+    manifests=/etc/kubernetes/manifests
+    put_back_manifests() {
+      for pod in etcd kube-apiserver; do
+        if [ -f "$restore_dir/$pod.yaml" ]; then
+          mv "$restore_dir/$pod.yaml" "$manifests/$pod.yaml"
+        fi
+      done
+    }
+    trap put_back_manifests EXIT
+    mv "$manifests/kube-apiserver.yaml" "$manifests/etcd.yaml" "$restore_dir/"
+    for attempt in $(seq 60); do
+      running=$(crictl ps --name '^(etcd|kube-apiserver)$' -q)
+      if [ -z "$running" ]; then
+        break
+      fi
+      sleep 1
+    done
+    test -z "$running"
+    mv /var/lib/etcd "$restore_dir/previous"
+    if ! mv "$restore_dir/restored" /var/lib/etcd; then
+      mv "$restore_dir/previous" /var/lib/etcd
+      exit 1
+    fi
 
-- name: Clean snapshot
+- name: Wait for the restored API to be ready
+  command: kubectl --kubeconfig=/etc/kubernetes/admin.conf get --raw=/readyz
+  register: etcd_restore_api
+  until: etcd_restore_api.rc == 0
+  retries: 45
+  delay: 2
+  changed_when: false
+
+- name: Discard the previous data after the restored API is healthy
   file:
-    path: /tmp/snap.db
+    path: "{{ etcd_restore.path }}"
     state: absent

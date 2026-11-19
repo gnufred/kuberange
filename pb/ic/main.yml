@@ -2,8 +2,15 @@
   hosts: cp0
   become: true
   become_user: root
+  vars_files:
+    - ../../config/network.json
+  environment:
+    ETCDCTL_ENDPOINTS: https://127.0.0.1:2379
+    ETCDCTL_CACERT: /etc/kubernetes/pki/etcd/ca.crt
+    ETCDCTL_CERT: /etc/kubernetes/pki/etcd/healthcheck-client.crt
+    ETCDCTL_KEY: /etc/kubernetes/pki/etcd/healthcheck-client.key
 
   roles:
     - {role: etcd_backup, tags: etcd_backup }
-    - {role: etcd_restore, tags: etcd_restore }
-    - {role: pki_restore, tags: pki_restore }
+    - {role: etcd_restore, tags: [never, etcd_restore] }
+    - {role: pki_restore, tags: [never, pki_restore] }

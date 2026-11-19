@@ -442,6 +442,7 @@
 
 - name: Load offline control plane container images
   vars_files:
+    - ../../config/binaries.json
     - ../../config/kubernetes.json
   hosts: cp0, cp1, cp2
   become: true
@@ -496,9 +497,17 @@
     register: kubernetes_python_install
     changed_when: "'Successfully installed' in kubernetes_python_install.stdout"
 
-  - name: Install etcdctl
+  - name: Install the matching etcd client and recovery tools
     tags: etcd
-    shell: apk add --allow-untrusted /.lfs/apk/etcd/*
+    unarchive:
+      src: "{{ playbook_dir }}/../../.lfs/binaries/{{ upstream_binaries.etcd.file }}"
+      dest: /usr/local/bin
+      owner: root
+      group: root
+      extra_opts: ['--strip-components=1']
+      include:
+        - "{{ upstream_binaries.etcd.file | regex_replace('[.]tar[.]gz$', '') }}/etcdctl"
+        - "{{ upstream_binaries.etcd.file | regex_replace('[.]tar[.]gz$', '') }}/etcdutl"
 
 
     ### IMAGES ###

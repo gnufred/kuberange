@@ -22,10 +22,6 @@
 
   tasks:
 
-    - name: Install etcdctl
-      tags: init
-      shell: apk add --allow-untrusted /.lfs/apk/etcd/*
-
     - name: Create shared certificate directory
       file:
         path: /etc/kubernetes/pki/etcd

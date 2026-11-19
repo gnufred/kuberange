@@ -1,25 +1,8 @@
-# MyK8s Vagrant lab
+# KubeRange lab notes
 
-Latest Vagrant configuration for my K8s labs.
+See the [KubeRange README](../README.md) for host prerequisites and a starter cluster. These notes record how the range is provisioned and which layouts have been tested.
 
-## Usage
-
-### Clone and provision
-
-Install Git LFS and the host prerequisites (Vagrant, vagrant-libvirt, Ansible, QEMU/KVM and Arch OVMF firmware), then:
-
-```bash
-git clone https://github.com/gnufred/myk8s.git
-cd myk8s
-git lfs pull
-cd vagrant
-run/services
-run/provision
-```
-
-`git lfs pull` restores the base box, cached APKs and container image archives. `run/provision` automatically calls `run/register-box`: if `myk8s/alpine-3.24` version `3.24.3` for libvirt/amd64 is missing, it verifies and registers the local archive from `.lfs/boxes/`. The locally generated Vagrant metadata includes its version and SHA-256; no remote box catalog is needed. An already registered matching version is reused. You can also run `run/register-box` before invoking Vagrant directly.
-
-The Alpine 3.24.3 base has passed boot, SSH key replacement and passwordless root access. The APK cache targets Alpine 3.24. The current Service/Pod network layout has been tested with `lb0`, all three control planes and two workers (`wo0`, `wo1`), using Kubernetes 1.36.1-r2 and containerd 2.3.7-r0. CoreDNS runs once per control plane. The NFS VM passed worker/PV persistence tests before the address changes; the remaining four workers and NFS VM have not been retested with the new network layout.
+## Provisioning details
 
 ### Host services
 
@@ -115,7 +98,7 @@ The control plane includes a matching kubectl 1.36.1. Use `vagrant ssh cp0 -c 'k
 
 ## Build an Alpine base box
 
-`run/build-alpine` builds a local Alpine 3.24.3 amd64 UEFI Vagrant/libvirt box from the pinned [rgl recipe](build/alpine/README.md), adapted for an Arch host. It requires Packer 1.16+, QEMU/KVM and `edk2-ovmf`. Use `run/build-alpine --check` to initialize plugins and validate without booting a VM. Build output stays in `.cache/build-alpine/`. After a successful build, the helper prints the command to register the box as `myk8s/alpine-3.24`; it does not change the lab configuration or register it automatically.
+`run/build-alpine` builds a local Alpine 3.24.3 amd64 UEFI Vagrant/libvirt box from the pinned [rgl recipe](../build/alpine/README.md), adapted for an Arch host. It requires Packer 1.16+, QEMU/KVM and `edk2-ovmf`. Use `run/build-alpine --check` to initialize plugins and validate without booting a VM. Build output stays in `.cache/build-alpine/`. After a successful build, the helper prints the command to register the box as `myk8s/alpine-3.24`; it does not change the lab configuration or register it automatically.
 
 ## Offline OS packages
 

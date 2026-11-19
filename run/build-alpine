@@ -9,7 +9,7 @@ Usage: run/build-alpine [--check]
 Build an Alpine 3.24.3 amd64 UEFI box using Packer and QEMU/KVM.
 --check initializes Packer plugins and validates the recipe without booting a VM.
 
-Output: vagrant/.cache/build-alpine/alpine-3.24.3-amd64-libvirt.box
+Output: .cache/build-alpine/alpine-3.24.3-amd64-libvirt.box
 The build downloads its ISO, Packer plugins and guest packages.
 It does not register the box, change the lab Vagrantfile, or start lab VMs.
 EOF

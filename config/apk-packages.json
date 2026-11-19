@@ -52,11 +52,9 @@
       "rpcbind-openrc"
     ],
     "containerd": [
-      "containerd=2.3.7-r0",
-      "containerd-ctr=2.3.7-r0",
-      "containerd-openrc=2.3.7-r0",
       "cni-plugins=1.9.1-r4",
-      "runc=1.4.4-r0"
+      "runc=1.4.4-r0",
+      "tar"
     ],
     "kubes": [
       "kubeadm=1.36.1-r2",

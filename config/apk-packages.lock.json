@@ -1,8 +1,8 @@
 {
   "alpine": "3.24",
   "architecture": "x86_64",
-  "config_sha256": "9da772af16b6464aa5b49d2cccf24f60bc1bde466e833f3af789474fb09acfab",
-  "resolved_at": "2026-11-19T10:42:11.675037+00:00",
+  "config_sha256": "b66794bd82efa0f92f2d3cf92717a9b9f273dc6a76a889fdbd8c592a7ab5215d",
+  "resolved_at": "2026-11-19T10:44:52.515835+00:00",
   "repositories": [
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/main",
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/community"
@@ -47,11 +47,9 @@
       "rpcbind-openrc"
     ],
     "containerd": [
-      "containerd=2.3.7-r0",
-      "containerd-ctr=2.3.7-r0",
-      "containerd-openrc=2.3.7-r0",
       "cni-plugins=1.9.1-r4",
-      "runc=1.4.4-r0"
+      "runc=1.4.4-r0",
+      "tar"
     ],
     "kubes": [
       "kubeadm=1.36.1-r2",
@@ -1343,14 +1341,9 @@
     ],
     "containerd": [
       {
-        "file": "busybox-1.37.0-r31.apk",
-        "sha256": "0e626fa97cf937fda7bba4ed4dde8e2f2dbb5083ac34e02180cec0c4eba9351b",
-        "bytes": 504769
-      },
-      {
-        "file": "busybox-binsh-1.37.0-r31.apk",
-        "sha256": "93f803ae5db6b729c0f66f4afba6e907ccc17d7d5f8b8c3d25bdb4636de2c48a",
-        "bytes": 1571
+        "file": "acl-libs-2.3.2-r1.apk",
+        "sha256": "3f02851d586c25d97ba8b5b845615aacc209ae7eaeb6f7843eca76d85da2249d",
+        "bytes": 14335
       },
       {
         "file": "cni-plugins-1.9.1-r4.apk",
@@ -1358,59 +1351,9 @@
         "bytes": 29898685
       },
       {
-        "file": "containerd-2.3.7-r0.apk",
-        "sha256": "bdacf19d51ea00ab489458d22a954b8a72850a32febd779e0380826198deb74b",
-        "bytes": 18062085
-      },
-      {
-        "file": "containerd-ctr-2.3.7-r0.apk",
-        "sha256": "c5a288b5c820a84f6e877e3ff650485a573ed4adb9a4da0cf4fa61c24a20bda9",
-        "bytes": 8913323
-      },
-      {
-        "file": "containerd-openrc-2.3.7-r0.apk",
-        "sha256": "36c93746021077e8064c9c143a4945dd9c0bdb82b8916a77d644b84ec2fd97fe",
-        "bytes": 2869
-      },
-      {
-        "file": "glib-2.88.1-r1.apk",
-        "sha256": "2f32203b97789bc9a92e57e2d9b89eb2e6951b69534ba082a683c6e49031cb5d",
-        "bytes": 2061645
-      },
-      {
-        "file": "libblkid-2.42.3-r1.apk",
-        "sha256": "2512c2bff496ac2b8561a3c814d21d35ce10cda579b3d410f9f96da93a5aaac1",
-        "bytes": 98429
-      },
-      {
-        "file": "libeconf-0.8.3-r0.apk",
-        "sha256": "2a791c7957961f830cf31b04f35f814a63afcf633badc9052425ff1cf2f64380",
-        "bytes": 26054
-      },
-      {
-        "file": "libffi-3.5.2-r1.apk",
-        "sha256": "6da1a19313a40c56cac756fb11e2c4d5267831e1c22fc8323f24c943c94da6e0",
-        "bytes": 18348
-      },
-      {
-        "file": "libintl-1.0-r0.apk",
-        "sha256": "cb03919cba5624b5e8759d04f3b31913b02585355988b914bc31de4746ff5ef6",
-        "bytes": 39537
-      },
-      {
-        "file": "libmount-2.42.3-r1.apk",
-        "sha256": "e2ae003260f2c1ec13666c6e108d5e8e3d64974b0667166a02432bd3be263a7a",
-        "bytes": 134799
-      },
-      {
         "file": "libseccomp-2.6.1-r0.apk",
         "sha256": "b22ccfe8cb072e4c8d3bc17222eeda132e270ce6258c27622acb193bf27b48e1",
         "bytes": 50518
-      },
-      {
-        "file": "log_proxy-0.7.4-r0.apk",
-        "sha256": "efe4888b9531753effd052132a45947bafaceb547ed483f87ade6c328fa17ffd",
-        "bytes": 14470
       },
       {
         "file": "musl-1.2.6-r3.apk",
@@ -1418,19 +1361,14 @@
         "bytes": 415466
       },
       {
-        "file": "pcre2-10.49-r0.apk",
-        "sha256": "2919897914820f42a17a8d7d37df310d2dfad1c82ebe5f539cc5c765f916752a",
-        "bytes": 323099
-      },
-      {
         "file": "runc-1.4.4-r0.apk",
         "sha256": "15c42ae8f9a49934cca71986cce1c73ba9e3066c561561eb49867536b2bbfbb7",
         "bytes": 3812201
       },
       {
-        "file": "zlib-1.4-r0.apk",
-        "sha256": "7b05bc778b8b25cd880835b40114182bd4d1581717504d0129c810c0a14291cb",
-        "bytes": 56761
+        "file": "tar-1.35-r5.apk",
+        "sha256": "5dad2fe0c7d18394dd7ffb64682760ce63718a7a1552b661f6e63036ce8b4958",
+        "bytes": 209614
       }
     ],
     "kubes": [

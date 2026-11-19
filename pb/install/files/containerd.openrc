@@ -1,0 +1,13 @@
+#!/sbin/openrc-run
+
+description="containerd container runtime"
+supervisor=supervise-daemon
+command=/usr/local/bin/containerd
+output_log=/var/log/containerd.log
+error_log="$output_log"
+export PATH="/usr/local/bin:$PATH"
+
+depend() {
+    need sysfs cgroups
+    after net
+}

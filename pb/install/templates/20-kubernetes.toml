@@ -1,4 +1,4 @@
-# Alpine containerd 2.3 imports this file from its packaged config.toml.
+# The KubeRange containerd configuration loads this drop-in.
 version = 4
 
 [plugins.'io.containerd.cri.v1.images'.pinned_images]
@@ -7,3 +7,6 @@ version = 4
 # Alpine uses OpenRC; cgroupfs manages the unified cgroup v2 hierarchy.
 [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.runc.options]
   SystemdCgroup = false
+
+[plugins.'io.containerd.cri.v1.runtime'.cni]
+  bin_dirs = ['/usr/libexec/cni']

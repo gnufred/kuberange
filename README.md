@@ -2,7 +2,7 @@
 
 KubeRange is a disposable Kubernetes practice range for a Linux workstation. It uses Vagrant, libvirt and Ansible to build a kubeadm cluster on Alpine Linux. Start with one control plane and one worker to practice deployments and troubleshooting. Add control-plane replicas for stacked etcd and API availability exercises, or an NFS server for persistent volumes.
 
-The current configuration uses Alpine 3.24.3, Kubernetes 1.36.1 and containerd 2.3.7. The base box, APK packages and Kubernetes system images are cached in the repository with Git LFS. Once you have the host tools and those assets, cluster provisioning can run offline.
+The current configuration uses Alpine 3.24.4, Kubernetes 1.36.1 and containerd 2.3.7. The base box, APK packages and Kubernetes system images are cached in the repository with Git LFS. Once you have the host tools and those assets, cluster provisioning can run offline.
 
 ## Host prerequisites
 

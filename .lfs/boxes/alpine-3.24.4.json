@@ -1,0 +1,8 @@
+{
+  "name": "myk8s/alpine-3.24",
+  "version": "3.24.4",
+  "provider": "libvirt",
+  "architecture": "amd64",
+  "file": "alpine-3.24.4-amd64-libvirt.box",
+  "sha256": "d9eebd6ac0218d33ab1c8c2e1b58360ea99f83cd62519b5badf0d4dcafeecaa1"
+}

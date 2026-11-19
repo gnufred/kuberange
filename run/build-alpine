@@ -6,10 +6,10 @@ usage() {
   cat <<'EOF'
 Usage: run/build-alpine [--check]
 
-Build an Alpine 3.24.3 amd64 UEFI box using Packer and QEMU/KVM.
+Build an Alpine 3.24.4 amd64 UEFI box using Packer and QEMU/KVM.
 --check initializes Packer plugins and validates the recipe without booting a VM.
 
-Output: .cache/build-alpine/alpine-3.24.3-amd64-libvirt.box
+Output: .cache/build-alpine/alpine-3.24.4-amd64-libvirt.box
 The build downloads its ISO, Packer plugins and guest packages.
 It does not register the box, change the lab Vagrantfile, or start lab VMs.
 EOF
@@ -25,7 +25,7 @@ if (( $# > 1 )); then usage >&2; exit 2; fi
 lab_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 recipe_dir="$lab_dir/build/alpine"
 build_dir="$lab_dir/.cache/build-alpine"
-box_path="$build_dir/alpine-3.24.3-amd64-libvirt.box"
+box_path="$build_dir/alpine-3.24.4-amd64-libvirt.box"
 
 for executable in packer qemu-system-x86_64 qemu-img; do
   if ! command -v "$executable" >/dev/null 2>&1; then

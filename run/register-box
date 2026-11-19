@@ -9,7 +9,7 @@ if [[ "${1:-}" == --help || "${1:-}" == -h ]]; then
 fi
 if (( $# )); then echo "Usage: run/register-box" >&2; exit 2; fi
 lab_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
-manifest="$lab_dir/.lfs/boxes/alpine-3.24.3.json"
+manifest="$lab_dir/.lfs/boxes/alpine-3.24.4.json"
 config="$(python3 - "$manifest" <<'PYCONFIG'
 import json,sys
 m=json.load(open(sys.argv[1]))

@@ -1,5 +1,5 @@
 require 'json'
-box = JSON.parse(File.read(File.join(__dir__, '.lfs/boxes/alpine-3.24.3.json')))
+box = JSON.parse(File.read(File.join(__dir__, '.lfs/boxes/alpine-3.24.4.json')))
 network = JSON.parse(File.read(File.join(__dir__, 'config', 'network.json')))
 ansible_command = File.join(__dir__, 'run/vagrant-ansible')
 

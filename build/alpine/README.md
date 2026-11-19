@@ -4,7 +4,7 @@ Adapted from [rgl/alpine-vagrant](https://github.com/rgl/alpine-vagrant), revisi
 
 Local changes:
 
-- Alpine standard ISO 3.24.3, verified against the official SHA-256 file: `1629ffe7308d4f3d3eeeed3a97d09ad62293f6d37ef3e483a7306077fdac12be`.
+- Alpine standard ISO 3.24.4, verified against the official SHA-256 file: `92e3e4e4c6b8e265a889278de2a633c0f1456ca52820952666ecb395c3d23582`.
 - Arch OVMF firmware paths for Packer and the resulting Vagrant box.
 - Packer's HTTP server binds to loopback; the installer accesses it through QEMU user networking's host gateway, `10.0.2.2`.
 - US keyboard layout; add Bash and rsync for the lab's shell and synced-folder workflow.

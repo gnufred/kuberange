@@ -4,6 +4,16 @@
       "file": "containerd-static-2.4.2-linux-amd64.tar.gz",
       "url": "https://github.com/containerd/containerd/releases/download/v2.4.2/containerd-static-2.4.2-linux-amd64.tar.gz",
       "sha256": "da656542e754c699a0f438eab925e6ffdbd6346a4428e659f83dc058f04dcffe"
+    },
+    "runc": {
+      "file": "runc-v1.5.3-linux-amd64",
+      "url": "https://github.com/opencontainers/runc/releases/download/v1.5.3/runc.amd64",
+      "sha256": "50dcc0b257d724fe07f3852c2dda52340223f038227c7572644eec870741223e"
+    },
+    "cni": {
+      "file": "cni-plugins-linux-amd64-v1.10.0.tgz",
+      "url": "https://github.com/containernetworking/plugins/releases/download/v1.10.0/cni-plugins-linux-amd64-v1.10.0.tgz",
+      "sha256": "ce8603d6a1bd448efba5bd6dc44f38dce349f821aa57e1bb354b52628ebf1853"
     }
   }
 }

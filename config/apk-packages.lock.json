@@ -1,8 +1,8 @@
 {
   "alpine": "3.24",
   "architecture": "x86_64",
-  "config_sha256": "b66794bd82efa0f92f2d3cf92717a9b9f273dc6a76a889fdbd8c592a7ab5215d",
-  "resolved_at": "2026-11-19T10:44:52.515835+00:00",
+  "config_sha256": "c254943c72f6e31f47451ea38584946ce05c2cbf047a9c3a9d46d46d26948a3a",
+  "resolved_at": "2026-11-19T10:47:22.656738+00:00",
   "repositories": [
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/main",
     "https://dl-cdn.alpinelinux.org/alpine/v3.24/community"
@@ -47,8 +47,6 @@
       "rpcbind-openrc"
     ],
     "containerd": [
-      "cni-plugins=1.9.1-r4",
-      "runc=1.4.4-r0",
       "tar"
     ],
     "kubes": [
@@ -1346,24 +1344,9 @@
         "bytes": 14335
       },
       {
-        "file": "cni-plugins-1.9.1-r4.apk",
-        "sha256": "ea85f4e152c64ee399e5e33c08d441040dc01a49b909c1f979e2f7becccd07f9",
-        "bytes": 29898685
-      },
-      {
-        "file": "libseccomp-2.6.1-r0.apk",
-        "sha256": "b22ccfe8cb072e4c8d3bc17222eeda132e270ce6258c27622acb193bf27b48e1",
-        "bytes": 50518
-      },
-      {
         "file": "musl-1.2.6-r3.apk",
         "sha256": "e142255d0fa397f14318996bc10378093dcc069dc3dd1b6818c8f28a789c21da",
         "bytes": 415466
-      },
-      {
-        "file": "runc-1.4.4-r0.apk",
-        "sha256": "15c42ae8f9a49934cca71986cce1c73ba9e3066c561561eb49867536b2bbfbb7",
-        "bytes": 3812201
       },
       {
         "file": "tar-1.35-r5.apk",

@@ -52,8 +52,6 @@
       "rpcbind-openrc"
     ],
     "containerd": [
-      "cni-plugins=1.9.1-r4",
-      "runc=1.4.4-r0",
       "tar"
     ],
     "kubes": [

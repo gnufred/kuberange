@@ -7,6 +7,7 @@ version = 4
 # Alpine uses OpenRC; cgroupfs manages the unified cgroup v2 hierarchy.
 [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.runc.options]
   SystemdCgroup = false
+  BinaryName = '/usr/local/bin/runc'
 
 [plugins.'io.containerd.cri.v1.runtime'.cni]
-  bin_dirs = ['/usr/libexec/cni']
+  bin_dirs = ['/opt/cni/bin']

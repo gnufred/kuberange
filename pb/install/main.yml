@@ -252,6 +252,32 @@
       group: root
     register: containerd_release
 
+  - name: Install the upstream runc executable
+    tags: containerd
+    copy:
+      src: "{{ playbook_dir }}/../../.lfs/binaries/{{ upstream_binaries.runc.file }}"
+      dest: /usr/local/bin/runc
+      owner: root
+      group: root
+      mode: '0755'
+    register: runc_release
+
+  - name: Create the CNI executable directory
+    tags: containerd
+    file:
+      path: /opt/cni/bin
+      state: directory
+      mode: '0755'
+
+  - name: Install the upstream CNI plugins
+    tags: containerd
+    unarchive:
+      src: "{{ playbook_dir }}/../../.lfs/binaries/{{ upstream_binaries.cni.file }}"
+      dest: /opt/cni/bin
+      owner: root
+      group: root
+    register: cni_release
+
   - name: Install the containerd OpenRC service
     tags: containerd
     copy:
@@ -297,7 +323,8 @@
       state: >-
         {{ 'restarted' if cni_config.changed or (containerd_config.changed | default(false))
           or (containerd_main_config.changed | default(false)) or (containerd_service.changed | default(false))
-          or (containerd_release.changed | default(false)) else 'started' }}
+          or (containerd_release.changed | default(false)) or (runc_release.changed | default(false))
+          or (cni_release.changed | default(false)) else 'started' }}
 
   - name: Wait for containerd to start
     wait_for:
